@@ -19,7 +19,7 @@ export class AboutPage {
   }
 
   getTop() {
-    this.restProvider.getTop(this.access_token)
+    this.restProvider.getAccessToken(this.access_token)
     .then((data: any) => {
       alert("About Page");
       alert(data);

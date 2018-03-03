@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RestProvider } from '../providers/rest/rest';
+import { Base64 } from '@ionic-native/base64';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { RestProvider } from '../providers/rest/rest';
     StatusBar,
     SplashScreen,
     InAppBrowser,
+    Base64,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     RestProvider
   ]
