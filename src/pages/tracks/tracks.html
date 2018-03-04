@@ -18,7 +18,7 @@
   <ion-list *ngIf="tracks">
       <button ion-item *ngFor="let track of tracks; let i = index">
         <ion-thumbnail item-start>
-          <img class="thumbnail" src={{track.album.images[0].url}}>
+          <img class="thumbnail" src={{track.album.images[1].url}}>
         </ion-thumbnail>
         <p>{{track.artists[0].name}}</p>
         <h2 class="track">{{track.name}}</h2>

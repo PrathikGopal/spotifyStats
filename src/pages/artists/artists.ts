@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, Platform } from 'ionic-angular';
-import { InAppBrowser } from '@ionic-native/in-app-browser';
+//import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { RestProvider } from '../../providers/rest/rest';
 
 @Component({
@@ -9,17 +9,11 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class ArtistsPage {
   artists: any;
-  code: string;
+  // code: string;
   time_span = "short_term";
 
-  constructor(public navCtrl: NavController, public browser: InAppBrowser, public restProvider: RestProvider) {
-    this.restProvider.spotifyLogin().then(success => {
-      this.code = success;
-      this.restProvider.getAccessToken(this.code).then( win => {
-        this.getTopArtists();
-      });
-    });
-    //this.getTopArtists();
+  constructor(public navCtrl: NavController, public restProvider: RestProvider) {
+    this.getTopArtists();
   }
 
 
