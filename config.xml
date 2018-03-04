@@ -84,4 +84,5 @@
     <plugin name="cordova-plugin-inappbrowser" spec="^2.0.2" />
     <engine name="android" spec="~7.0.0" />
     <plugin name="com-badrit-base64" spec="^0.2.0" />
+    <allow-navigation href="http://10.0.0.7:8100" />
 </widget>

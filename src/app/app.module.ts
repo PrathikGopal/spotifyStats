@@ -6,6 +6,9 @@ import { MyApp } from './app.component';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
+
+import { ArtistsPage } from '../pages/artists/artists';
+import { TracksPage } from '../pages/tracks/tracks';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -21,7 +24,9 @@ import { Base64 } from '@ionic-native/base64';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ArtistsPage,
+    TracksPage
     ],
   imports: [
     BrowserModule,
@@ -34,7 +39,9 @@ import { Base64 } from '@ionic-native/base64';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ArtistsPage,
+    TracksPage
   ],
   providers: [
     StatusBar,
