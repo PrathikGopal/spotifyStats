@@ -5,7 +5,7 @@ page-artists {
     .artist {
         float: left;
     }
-    .thumbnail {
-        border: 1px solid black;
+    .select-text {
+        color: color($colors, light);
     }
 }

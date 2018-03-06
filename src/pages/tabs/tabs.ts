@@ -5,6 +5,7 @@ import { ArtistsPage } from '../artists/artists';
 import { TracksPage } from '../tracks/tracks';
 
 @Component({
+  selector: 'tabs',
   templateUrl: 'tabs.html'
 })
 export class TabsPage {
@@ -12,7 +13,7 @@ export class TabsPage {
   tab1Root = ArtistsPage;
   tab2Root = TracksPage;
   tab3Root = ContactPage;
-
+  
   constructor() {
 
   }

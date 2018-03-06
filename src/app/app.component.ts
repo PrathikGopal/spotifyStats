@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 import { LoginPage } from '../pages/login/login';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { RestProvider } from '../providers/rest/rest';
 
 @Component({
   templateUrl: 'app.html'
@@ -14,7 +15,7 @@ export class MyApp {
   //rootPage:any = TabsPage;
   rootPage: any;
   
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage, private restProvider: RestProvider) {
     storage.get('accessToken').then(accessToken => {
       if (accessToken == null) {
         this.rootPage = LoginPage;

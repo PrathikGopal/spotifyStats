@@ -1,12 +1,20 @@
-<ion-header>
+<!-- <ion-header>
 
   <ion-navbar>
     <ion-title>Login</ion-title>
+    <ion-select interface="popover">
+      <ion-option value="short_term">Past Month</ion-option>
+      <ion-option value="medium_term">Past 6 Months</ion-option>
+      <ion-option value="long_term">Past Year</ion-option>
+    </ion-select>
   </ion-navbar>
 
-</ion-header>
+</ion-header> -->
 
 
-<ion-content padding>
-  <button (click)="login()">Login</button>
+<ion-content padding text-center>
+  <!-- <button id="login" ion-button round large color="primary" (click)="login()">Login with Spotify</button> -->
 </ion-content>
+<ion-footer padding text-center class="black">
+  <button ion-button round large color="primary" (click)="login()">Login with Spotify</button>
+</ion-footer>

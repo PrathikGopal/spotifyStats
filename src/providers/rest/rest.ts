@@ -17,12 +17,15 @@ export class RestProvider {
   constructor(private storage: Storage, public http: HttpClient, public base64: Base64, public iab: InAppBrowser) {
     storage.get('accessToken').then(accessToken => {
       this.accessToken = accessToken;
+      //alert("Access Token Loaded " + this.accessToken);
     });
     storage.get('refreshToken').then(refreshToken => {
-      this.refreshToken = refreshToken;      
+      this.refreshToken = refreshToken;
+      //alert("RefreshToken Loaded " + this.refreshToken);
     })
     storage.get('expiration').then(expiration => {
       this.expiration = expiration;
+      //alert("Expiration " + this.expiration);
     });
   }
 
@@ -30,12 +33,9 @@ export class RestProvider {
   * Retrieves the user's top artists for a "medium-term" time period (default)
   */
   getTopArtists(timespan = "short_term") {
-    if (this.tokenExpired) {
-      this.requestNewToken();
-    }
     return new Promise(resolve => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
-      let params = new HttpParams().set('time_range', timespan);
+      let params = new HttpParams().set('time_range', timespan).set('limit', "50");
       this.http.get(this.apiUrl+"/me/top/artists", {
         headers: headers,
         params: params
@@ -53,12 +53,9 @@ export class RestProvider {
   * Retrieves the user's top tracks for a "medium-term" time period (default)
   */
   getTopTracks(timespan = "short_term") {
-    if (this.tokenExpired) {
-      this.requestNewToken();
-    }
     return new Promise(resolve => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
-      let params = new HttpParams().set('time_range', timespan);
+      let params = new HttpParams().set('time_range', timespan).set('limit', "50");
       this.http.get(this.apiUrl+"/me/top/tracks", {
         headers: headers,
         params: params
@@ -86,6 +83,9 @@ export class RestProvider {
   * Refresh the access token
   */
   public requestNewToken() {
+    // alert("Old Access Token " + this.accessToken);
+    // alert("Old Refresh Token " + this.refreshToken);
+    // alert("Old Expiration " + this.expiration);
     return new Promise(resolve => {
       let tokenUrl = 'https://accounts.spotify.com/api/token';
       let headers = new HttpHeaders().set('Authorization', 'Basic '+btoa(this.client_id+':'+this.client_secret)).set('Content-Type', 'application/x-www-form-urlencoded');
@@ -94,13 +94,16 @@ export class RestProvider {
       {
         headers: headers
       }).subscribe((data: any) => {
-        // this.accessToken = data.access_token;
-        // this.refreshToken = data.refresh_token;
         this.storage.set('accessToken', data.access_token);
-        this.storage.set('refreshToken', data.refresh_token);
-        let expiration = Date.now() + data.expires_in;
-        this.storage.set('expiration', expiration);
+        this.accessToken = data.access_token;
+        //alert("Access Token Set: " + this.accessToken);
 
+        let expiration = Date.now() + (data.expires_in * 1000);
+        this.storage.set('expiration', expiration);
+        this.expiration = expiration;
+        //alert("Expiration Set: " + this.expiration);
+
+        //alert("New tokens assigned and saved");
         resolve(data);
       }, (err) => {
         alert("Failed to acquire access token");
@@ -119,7 +122,7 @@ export class RestProvider {
       let redirectUri = 'http://localhost/callback';
       let state = 'state';
       let scope = 'user-top-read';
-      let fullUrl = apiURL + "?client_id="+this.client_id+"&response_type=code&redirect_uri="+redirectUri+"&scope="+scope+"&state="+state;
+      let fullUrl = apiURL + "?client_id="+this.client_id+"&show_dialog=true&response_type=code&redirect_uri="+redirectUri+"&scope="+scope+"&state="+state;
       let browseRef = this.iab.create(fullUrl, "_blank", "location=no");
       let listener = browseRef.on('loadstart').subscribe((event: any) => {
         if (event.url.startsWith("http://localhost/callback")) {
@@ -144,19 +147,39 @@ export class RestProvider {
       this.http.post(tokenUrl, body,
       {
         headers: headers
-      }).subscribe((data: any) => {
-        //this.accessToken = data.access_token;
-        //this.refreshToken = data.refresh_token;
+      })
+      .subscribe((data: any) => {
         this.storage.set('accessToken', data.access_token);
-        this.storage.set('refreshToken', data.refresh_token);
-        let expiration = Date.now() + data.expires_in;
-        this.storage.set('expiration', expiration);
+        this.accessToken = data.access_token;
+        //alert("Access Token Set: " + this.accessToken);
 
+        this.storage.set('refreshToken', data.refresh_token);
+        this.refreshToken = data.refresh_token;
+        //alert("Refresh Token Set: " + this.refreshToken);
+
+        let expiration = Date.now() + (data.expires_in * 1000);
+        this.storage.set('expiration', expiration);
+        this.expiration = expiration;
+        //alert("Expiration Set: " + this.expiration);
+
+        //alert("Initial Tokens all set");
         resolve(data);
       }, (err) => {
         alert("Failed to acquire access token");
         alert(JSON.stringify(err));
       });
+    });
+  }
+
+  logout() {
+    return new Promise(resolve => {
+      this.storage.remove('accessToken');
+      this.storage.remove('refreshToken');
+      this.storage.remove('expiration');
+      this.accessToken = undefined;
+      this.refreshToken = undefined;
+      this.expiration = undefined;
+      resolve();
     });
   }
 }

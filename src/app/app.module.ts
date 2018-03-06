@@ -8,6 +8,7 @@ import { ArtistsPage } from '../pages/artists/artists';
 import { TracksPage } from '../pages/tracks/tracks';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
+import { PopoverPage } from '../pages/popover/popover';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -25,7 +26,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage,
     ArtistsPage,
     TracksPage,
-    LoginPage
+    LoginPage,
+    PopoverPage
     ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { IonicStorageModule } from '@ionic/storage';
     TabsPage,
     ArtistsPage,
     TracksPage,
-    LoginPage
+    LoginPage,
+    PopoverPage
   ],
   providers: [
     StatusBar,

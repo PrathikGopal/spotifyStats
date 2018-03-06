@@ -3,19 +3,22 @@
     <ion-title>
       Top Artists
     </ion-title>
-        <ion-select [(ngModel)]="time_span" interface="popover" (ionChange)="getTopArtists()">
+        <ion-select [(ngModel)]="time_span" interface="popover" (ionChange)="showLoading()">
           <ion-option value="short_term">Past Month</ion-option>
           <ion-option value="medium_term">Past 6 Months</ion-option>
           <ion-option value="long_term">Past Year</ion-option>
         </ion-select>
+        <ion-buttons end>
+          <button ion-button icon-only (click)="presentPopover($event)">
+            <ion-icon name="more"></ion-icon>
+          </button>
+        </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <!-- <button (click)='getTopArtists()'>Get Top Artists!</button> -->
-
+<ion-content>
   <ion-list *ngIf="artists">
-    <button ion-item *ngFor="let artist of artists; let i = index">
+    <button color="dark" ion-item no-lines *ngFor="let artist of artists; let i = index">
       <ion-thumbnail item-start>
         <img class="thumbnail" src={{artist.images[1].url}}>
       </ion-thumbnail>

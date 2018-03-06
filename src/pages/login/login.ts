@@ -11,13 +11,21 @@ import { TabsPage } from '../../pages/tabs/tabs';
 export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
+    //this.login();
   }
 
   login() {
-    this.restProvider.spotifyLogin().then(success => {
-      this.restProvider.getAccessToken(success);
-      this.navCtrl.push(TabsPage);
+    this.restProvider.spotifyLogin()
+    .then(success => {
+      return this.restProvider.getAccessToken(success)
     })
+    .then(() => {
+      this.navCtrl.setRoot(TabsPage);
+    });
+  }
+
+  goToTabs() {
+    this.navCtrl.setRoot(TabsPage);
   }
 
   ionViewDidLoad() {
