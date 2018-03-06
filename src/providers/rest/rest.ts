@@ -49,6 +49,21 @@ export class RestProvider {
     });
   }
 
+  getArtist(id: string) {
+    return new Promise(resolve => {
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'appilcation/json');
+      this.http.get(this.apiUrl+"/artists/"+id, {
+        headers: headers
+      })
+      .subscribe(data => {
+        resolve(data);
+      }, (err) => {
+        alert(JSON.stringify(err));
+        console.log(err);
+      })
+    })
+  }
+
   /*
   * Retrieves the user's top tracks for a "medium-term" time period (default)
   */

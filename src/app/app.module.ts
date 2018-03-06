@@ -3,9 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { ContactPage } from '../pages/contact/contact';
+import { AboutPage } from '../pages/about/about';
 import { ArtistsPage } from '../pages/artists/artists';
 import { TracksPage } from '../pages/tracks/tracks';
+import { GenresPage } from '../pages/genres/genres';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PopoverPage } from '../pages/popover/popover';
@@ -22,10 +23,11 @@ import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
-    ContactPage,
+    AboutPage,
     TabsPage,
     ArtistsPage,
     TracksPage,
+    GenresPage,
     LoginPage,
     PopoverPage
     ],
@@ -38,10 +40,11 @@ import { IonicStorageModule } from '@ionic/storage';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    ContactPage,
+    AboutPage,
     TabsPage,
     ArtistsPage,
     TracksPage,
+    GenresPage,
     LoginPage,
     PopoverPage
   ],

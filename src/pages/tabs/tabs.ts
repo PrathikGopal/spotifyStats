@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 
-import { ContactPage } from '../contact/contact';
+import { AboutPage } from '../about/about';
 import { ArtistsPage } from '../artists/artists';
 import { TracksPage } from '../tracks/tracks';
+
+import { GenresPage } from '../genres/genres';
 
 @Component({
   selector: 'tabs',
@@ -12,7 +14,7 @@ export class TabsPage {
 
   tab1Root = ArtistsPage;
   tab2Root = TracksPage;
-  tab3Root = ContactPage;
+  tab3Root = GenresPage;
   
   constructor() {
 

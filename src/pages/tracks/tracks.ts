@@ -22,7 +22,7 @@ export class TracksPage {
       // alert("Token has expired, requesting a new one");
       this.restProvider.requestNewToken()
       .then(() => {
-        return this.restProvider.getTopTracks(this.time_span)
+        return this.restProvider.getTopTracks(this.time_span);
       })
       .then((data: any) => {
         this.tracks = data.items;
