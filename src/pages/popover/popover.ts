@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { LoginPage } from '../login/login';
 
@@ -8,7 +8,9 @@ import { LoginPage } from '../login/login';
 })
 
 export class PopoverPage {
-  constructor(public navCtrl: NavController, public viewCtrl: ViewController, public restProvider: RestProvider) {}
+  constructor(public platform: Platform, public navCtrl: NavController, public viewCtrl: ViewController, public restProvider: RestProvider) {
+
+  }
 
   close() {
     this.viewCtrl.dismiss();
@@ -16,11 +18,12 @@ export class PopoverPage {
 
   logout() {
     this.restProvider.logout()
-    .then(success => {
+    .then(() => {
       return this.viewCtrl.dismiss();
     })
-    .then(dismissed => {
+    .then(() => {
       this.navCtrl.setRoot(LoginPage);
-    })
+      this.navCtrl.popToRoot();
+    });
   }
 }

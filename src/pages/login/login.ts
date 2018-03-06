@@ -21,6 +21,7 @@ export class LoginPage {
     })
     .then(() => {
       this.navCtrl.setRoot(TabsPage);
+      this.navCtrl.popToRoot();
     });
   }
 
