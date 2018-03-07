@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams } from 'ionic-angular';
+import { LoadingController, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { PopoverPage } from '../popover/popover';
 
 @Component({
   selector: 'page-genres',
@@ -8,12 +9,18 @@ import { RestProvider } from '../../providers/rest/rest';
 })
 export class GenresPage {
   time_span = "short_term";
+  topGenres: [string, number][];
+
   constructor(public navCtrl: NavController, public navParams: NavParams
-    , public restProvider: RestProvider, public loadingCtrl: LoadingController) {
+    , public restProvider: RestProvider, public loadingCtrl: LoadingController, public popoverCtrl: PopoverController) {
+      this.showLoading();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad GenresPage');
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(PopoverPage);
+    popover.present({
+      ev: myEvent
+    });
   }
 
   getTopTracks() {
@@ -91,16 +98,24 @@ export class GenresPage {
           }
         }
       }
-      alert("Genres Mapped!");
-      let mapOutput = "";
-      genreMap.forEach((value: number, key: string) => {
-        mapOutput += key + ": " + value + "\n";
-      });
-      alert(mapOutput);
+      // Sort the map into an array, highest to lowest
       let mapArray = Array.from(genreMap).sort((a, b) => {
-        return a.length - b.length;
+        return b["1"] - a["1"];
       });
-      alert(JSON.stringify(mapArray));
+      this.topGenres = mapArray.slice(0, 10); // Top 10 genres
+    });
+  }
+
+  showLoading() {
+    let loading = this.loadingCtrl.create({
+      content: "Loading Data..."
+    });
+    loading.present()
+    .then(() => {
+      return this.getGenres();
+    })
+    .then(() => {
+      loading.dismiss();
     });
   }
 }

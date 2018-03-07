@@ -5,9 +5,6 @@ page-tracks {
     .track {
         float: left;
     }
-    .thumbnail {
-        border: 1px solid black;
-    }
     .sublabel {
         color: darken(color($colors, light), 40%);
     }

@@ -5,6 +5,7 @@ import { ArtistsPage } from '../artists/artists';
 import { TracksPage } from '../tracks/tracks';
 
 import { GenresPage } from '../genres/genres';
+import { NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'tabs',
@@ -15,8 +16,9 @@ export class TabsPage {
   tab1Root = ArtistsPage;
   tab2Root = TracksPage;
   tab3Root = GenresPage;
+  index: 0;
   
-  constructor() {
-
+  constructor(private navParams: NavParams) {
+    this.index = navParams.get('index');
   }
 }

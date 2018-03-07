@@ -2,4 +2,8 @@ page-about {
     #footer {
         color: color($colors, light);
     }
+    p {
+        float: left;
+        padding-top: 3px;
+    }
 }

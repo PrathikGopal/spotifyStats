@@ -1,3 +1,15 @@
 page-genres {
-
+    .ranking {
+        float: right;
+    }
+    .genre {
+        float: left;
+        text-transform: capitalize;
+    }
+    .sublabel {
+        color: darken(color($colors, light), 40%);
+    }
+    // .select-text {
+    //     color: color($colors, light);
+    // }
 }

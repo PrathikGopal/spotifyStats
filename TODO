@@ -1,8 +1,6 @@
 TODO
 -Some kind of image/banner on the login page (looks a little bare)
 -Splashscreen -> Awaiting artwork
--Page: Metrics
-   -Top genres
 -Click down into the artist data
 
 -Timeframe selection should carry over to the other page
@@ -12,3 +10,5 @@ DONE
 -Timeframe Select cleaned up
 -Padding differences between Artists/Tracks
 -About Page
+-Page: Metrics
+   -Top Genres
