@@ -1,4 +1,5 @@
 TODO
+-Web API
 -Some kind of image/banner on the login page (looks a little bare)
 -Splashscreen -> Awaiting artwork
 -Click down into the artist data
@@ -7,6 +8,8 @@ TODO
 
 DONE
 -Back button doesn't exit the app
+   -Corrected for logging out
+   -Seems to work everywhere, keep an eye out.
 -Timeframe Select cleaned up
 -Padding differences between Artists/Tracks
 -About Page

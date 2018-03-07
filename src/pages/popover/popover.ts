@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
+import { App, NavController, NavParams, ViewController, ModalController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { LoginPage } from '../login/login';
 import { AboutPage } from '../about/about';
-import { TabsPage } from '../tabs/tabs';
 
 @Component({
   templateUrl: 'popover.html'
@@ -11,7 +10,7 @@ import { TabsPage } from '../tabs/tabs';
 
 export class PopoverPage {
   constructor(public modalCtrl: ModalController, public navCtrl: NavController
-    , public viewCtrl: ViewController, public restProvider: RestProvider) {
+    , public viewCtrl: ViewController, public restProvider: RestProvider, public app: App) {
 
   }
 
@@ -25,8 +24,8 @@ export class PopoverPage {
       return this.viewCtrl.dismiss();
     })
     .then(() => {
-      this.navCtrl.setRoot(LoginPage);
-      this.navCtrl.popToRoot();
+      this.app.getRootNav().setRoot(LoginPage);
+      this.app.getRootNav().popToRoot();
     });
   }
 
