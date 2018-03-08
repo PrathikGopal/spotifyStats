@@ -46,6 +46,7 @@ $tabbar-md-background: color($colors, dark);
 $tabs-md-tab-color-active: color($colors, primary);
 $tabs-background: color($colors, dark);
 $tabs-md-tab-color-inactive: color($colors, light);
+$item-md-paragraph-text-color: darken(color($colors, light), 40%);
 
 $radio-md-color-on: color($colors, primary);
 $radio-md-color-off: color($colors, light);

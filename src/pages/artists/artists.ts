@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, PopoverController } from 'ionic-angular';
+import { Modal, ModalController, LoadingController, NavController, PopoverController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
+import { ArtistDetailPage } from '../artist-detail/artist-detail';
 import { PopoverPage } from '../popover/popover';
 
 @Component({
@@ -10,9 +11,11 @@ import { PopoverPage } from '../popover/popover';
 export class ArtistsPage {
   artists: any;
   time_span = "short_term";
+  modal: Modal;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider
-    , public popoverCtrl: PopoverController, public loadingCtrl: LoadingController) {
+    , public popoverCtrl: PopoverController, public loadingCtrl: LoadingController
+    , public modalCtrl: ModalController) {
     this.showLoading();
   }
 
@@ -40,6 +43,12 @@ export class ArtistsPage {
     popover.present({
       ev: myEvent
     });
+  }
+
+  showArtistDetail(artist) { // Modal
+    this.modal = this.modalCtrl.create(ArtistDetailPage, {item: artist});
+    // Send the artist to the modal
+    this.modal.present();
   }
 
   showLoading() {

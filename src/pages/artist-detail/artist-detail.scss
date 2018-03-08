@@ -1,0 +1,36 @@
+page-artist-detail {
+    ion-grid {
+        font-size: 1.4rem !important;
+        color: color($colors, light);
+    }
+    .genre {
+        text-transform: capitalize;
+    }
+    .scroll-zoom-wrapper {
+        white-space: nowrap;
+    }
+    .card-md {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+    .title {
+        color: color($colors, light);
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    ion-card {
+        width: 40% !important;
+        display: inline-block;
+        text-overflow: ellipsis;
+        text-align: center;
+
+    }
+    ion-scroll {
+        min-height: 220px;
+        //height: auto;
+
+        .scroll-content {
+            padding: 0px 16px 16px 16px !important;
+        }
+    }
+}

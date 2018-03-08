@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 // Pages
 import { AboutPage } from '../pages/about/about';
 import { ArtistsPage } from '../pages/artists/artists';
+import { ArtistDetailPage } from '../pages/artist-detail/artist-detail';
 import { TracksPage } from '../pages/tracks/tracks';
 import { GenresPage } from '../pages/genres/genres';
 import { LoginPage } from '../pages/login/login';
@@ -29,6 +30,7 @@ import { AppVersion } from '@ionic-native/app-version';
     AboutPage,
     TabsPage,
     ArtistsPage,
+    ArtistDetailPage,
     TracksPage,
     GenresPage,
     LoginPage,
@@ -46,6 +48,7 @@ import { AppVersion } from '@ionic-native/app-version';
     AboutPage,
     TabsPage,
     ArtistsPage,
+    ArtistDetailPage,
     TracksPage,
     GenresPage,
     LoginPage,

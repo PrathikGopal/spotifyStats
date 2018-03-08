@@ -20,9 +20,9 @@
 
 <ion-content>
   <ion-list *ngIf="artists">
-    <button color="dark" ion-item no-lines *ngFor="let artist of artists; let i = index">
+    <button color="dark" ion-item no-lines *ngFor="let artist of artists; let i = index" (click)="showArtistDetail(artist)">
       <ion-thumbnail item-start>
-        <img class="thumbnail" src={{artist.images[1].url}}>
+        <img src={{artist.images[1].url}}>
       </ion-thumbnail>
       <h2 class="artist">{{artist.name}}</h2>
       <h2 class="ranking">#{{i + 1}}</h2>

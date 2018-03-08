@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class RestProvider {
   apiUrl = "https://api.spotify.com/v1";
-  oauthCode : string;
+  oauthCode : any;
   accessToken: string;
   refreshToken: string;
   expiration: any;
@@ -49,9 +49,12 @@ export class RestProvider {
     });
   }
 
+  /*
+  * Retrieve a single artist object
+  */
   getArtist(id: string) {
     return new Promise(resolve => {
-      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'appilcation/json');
+      let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
       this.http.get(this.apiUrl+"/artists/"+id, {
         headers: headers
       })
@@ -60,9 +63,27 @@ export class RestProvider {
       }, (err) => {
         alert(JSON.stringify(err));
         console.log(err);
-      })
-    })
+      });
+    });
   }
+
+  /*
+  * Retrieve an array of Albums relating to a single Artist ID
+  */
+ getArtistAlbums(id: string) {
+   return new Promise(resolve => {
+     let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
+     this.http.get(this.apiUrl+"/artists/"+id+"/albums", {
+       headers: headers
+     })
+     .subscribe(data => {
+       resolve(data);
+     }, (err) => {
+       alert(JSON.stringify(err));
+       console.log(err);
+     });
+   });
+ }
 
   /*
   * Retrieves the user's top tracks for a "medium-term" time period (default)
