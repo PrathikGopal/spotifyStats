@@ -33,17 +33,17 @@
       </ion-row>
     </ion-grid>
     
-    
-    <ion-scroll id="album-scroll" *ngIf="albums" scrollX="true" direction="x">
-      <div class="title">Albums</div>
+    <div *ngIf="albums?.length > 0" class="title">Albums</div>
+    <ion-scroll id="album-scroll" *ngIf="albums?.length > 0" scrollX="true" direction="x">
       <ion-card color="dark" *ngFor="let album of albums" no-shadow>
         <img src={{album.images[0].url}}><br>
         {{album.name}}
       </ion-card>
     </ion-scroll>
 
-    <ion-scroll id="single-scroll" *ngIf="singles" scrollX="true" direction="x">
-        <div class="title">Singles and EPs</div>
+    <div *ngIf="singles?.length > 0" class="title">Singles and EPs</div>
+    <ion-scroll id="single-scroll" *ngIf="singles?.length > 0" scrollX="true" direction="x">
+        
         <ion-card color="dark" *ngFor="let single of singles" no-shadow>
           <img src={{single.images[0].url}}><br>
           {{single.name}}

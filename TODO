@@ -2,9 +2,10 @@ TODO
 -Web API
 -Some kind of image/banner on the login page (looks a little bare)
 -Splashscreen -> Awaiting artwork
--Click down into the artist data
 
 -Timeframe selection should carry over to the other page
+
+-Wait for images to load?
 
 DONE
 -Back button doesn't exit the app
@@ -15,3 +16,5 @@ DONE
 -About Page
 -Page: Metrics
    -Top Genres
+-Click down into the artist data
+   -Displays album data
