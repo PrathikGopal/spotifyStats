@@ -10,7 +10,7 @@ import { TabsPage } from '../../pages/tabs/tabs';
 export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider) {
-    //this.login();
+
   }
 
   debugLogin() {

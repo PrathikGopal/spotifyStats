@@ -16,9 +16,8 @@ export class TabsPage {
   tab1Root = ArtistsPage;
   tab2Root = TracksPage;
   tab3Root = GenresPage;
-  index: 0;
   
   constructor(private navParams: NavParams) {
-    this.index = navParams.get('index');
+
   }
 }

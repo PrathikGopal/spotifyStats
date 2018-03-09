@@ -4,7 +4,7 @@
         Top Tracks
       </ion-title>
       <ion-item no-lines>
-        <ion-label id="time-select" padding-left><ion-icon name="menu"></ion-icon></ion-label>
+        <ion-label id="time-select" padding-left><ion-icon name="arrow-dropdown"></ion-icon></ion-label>
         <ion-select [(ngModel)]="time_span" interface="action-sheet" (ionChange)="showLoading()">
           <ion-option value="short_term">Past Month</ion-option>
           <ion-option value="medium_term">Past 6 Months</ion-option>
@@ -22,7 +22,7 @@
 
 <ion-content>
   <ion-list *ngIf="tracks">
-      <button color="dark" ion-item no-lines *ngFor="let track of tracks; let i = index">
+      <button color="dark" ion-item no-lines *ngFor="let track of tracks; let i = index" (click)="showTrackDetail(track)">
         <ion-thumbnail item-start>
           <img src={{track.album.images[1].url}}>
         </ion-thumbnail>

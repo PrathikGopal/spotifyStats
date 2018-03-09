@@ -13,10 +13,10 @@ export class ArtistsPage {
   time_span = "short_term";
   modal: Modal;
 
-  constructor(public navCtrl: NavController, public restProvider: RestProvider
-    , public popoverCtrl: PopoverController, public loadingCtrl: LoadingController
-    , public modalCtrl: ModalController) {
-    this.showLoading();
+  constructor(public navCtrl: NavController, public restProvider: RestProvider,
+    public popoverCtrl: PopoverController, public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController) {
+      this.showLoading();
   }
 
   getTopArtists() {

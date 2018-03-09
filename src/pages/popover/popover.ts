@@ -9,8 +9,8 @@ import { AboutPage } from '../about/about';
 })
 
 export class PopoverPage {
-  constructor(public modalCtrl: ModalController, public navCtrl: NavController
-    , public viewCtrl: ViewController, public restProvider: RestProvider, public app: App) {
+  constructor(public modalCtrl: ModalController, public navCtrl: NavController,
+    public viewCtrl: ViewController, public restProvider: RestProvider, public app: App) {
 
   }
 

@@ -12,10 +12,10 @@ export class ArtistDetailPage {
   albums: any;
   singles: any;
 
-  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams
-    , public restProvider: RestProvider, public iab: InAppBrowser, public popoverCtrl: PopoverController) {
+  constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams,
+    public restProvider: RestProvider, public iab: InAppBrowser, public popoverCtrl: PopoverController) {
     this.item = navParams.get('item');
-    this.getArtistAlbums(this.item.id);
+      this.getArtistAlbums(this.item.id);
   }
 
   close() {

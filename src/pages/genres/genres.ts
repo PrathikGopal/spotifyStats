@@ -11,8 +11,8 @@ export class GenresPage {
   time_span = "short_term";
   topGenres: [string, number][];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams
-    , public restProvider: RestProvider, public loadingCtrl: LoadingController, public popoverCtrl: PopoverController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider,
+    public loadingCtrl: LoadingController, public popoverCtrl: PopoverController) {
       this.showLoading();
   }
 
