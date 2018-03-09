@@ -8,4 +8,12 @@ page-tracks {
     .sublabel {
         color: darken(color($colors, light), 40%);
     }
+    .select-icon {
+        visibility: hidden;
+        //transform: rotate(180deg);
+    }
+    #time-select {
+        flex: none!important;
+        -webkit-flex: none!important;
+    }
 }

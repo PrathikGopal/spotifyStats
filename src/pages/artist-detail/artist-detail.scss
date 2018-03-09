@@ -13,6 +13,10 @@ page-artist-detail {
         box-shadow: none;
         -webkit-box-shadow: none;
     }
+    #followers {
+        color: darken(color($colors, light), 40%);
+        font-size: 1.1rem;
+    }
     .title {
         color: color($colors, light);
         font-size: 2rem;

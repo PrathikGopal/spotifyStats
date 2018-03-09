@@ -34,7 +34,7 @@ import { AppVersion } from '@ionic-native/app-version';
     TracksPage,
     GenresPage,
     LoginPage,
-    PopoverPage
+    PopoverPage,
     ],
   imports: [
     BrowserModule,
@@ -52,7 +52,7 @@ import { AppVersion } from '@ionic-native/app-version';
     TracksPage,
     GenresPage,
     LoginPage,
-    PopoverPage
+    PopoverPage,
   ],
   providers: [
     StatusBar,

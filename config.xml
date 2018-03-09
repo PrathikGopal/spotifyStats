@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="3" id="com.gmail.joebill79.spotifystats" version="0.6.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Spotify Stats</name>
+<widget android-versionCode="3" id="com.gmail.joebill79.statsforspotify" version="0.6.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Stats For Spotify</name>
     <description>An app to display Spotify user metrics, written with Ionic/Cordova</description>
     <author email="joebill79@gmail.com" href="mailto:joebill79@gmail.com">Joseph Billstrom</author>
     <content src="index.html" />
