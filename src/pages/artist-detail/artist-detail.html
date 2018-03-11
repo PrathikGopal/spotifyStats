@@ -38,7 +38,8 @@
     <div *ngIf="albums?.length > 0" class="title">Albums</div>
     <ion-scroll id="album-scroll" *ngIf="albums?.length > 0" scrollX="true" direction="x">
       <ion-card color="dark" *ngFor="let album of albums" no-shadow>
-        <img src={{album.images[0].url}}><br>
+        <!-- <img src={{album.images[0].url}}><br> -->
+        <img-loader src="{{album.images[0].url}}" useImg></img-loader><br>
         {{album.name}}
       </ion-card>
     </ion-scroll>
@@ -46,7 +47,8 @@
     <div *ngIf="singles?.length > 0" class="title">Singles and EPs</div>
     <ion-scroll id="single-scroll" *ngIf="singles?.length > 0" scrollX="true" direction="x">  
         <ion-card color="dark" *ngFor="let single of singles" no-shadow>
-          <img src={{single.images[0].url}}><br>
+          <!-- <img src={{single.images[0].url}}><br> -->
+          <img-loader src="{{single.images[0].url}}" useImg></img-loader>
           {{single.name}}
         </ion-card>
       </ion-scroll>

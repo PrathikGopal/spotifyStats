@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { LoadingController, NavController, NavParams, PopoverController, ActionSheetController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { PopoverPage } from '../popover/popover';
 
@@ -8,12 +8,12 @@ import { PopoverPage } from '../popover/popover';
   templateUrl: 'genres.html',
 })
 export class GenresPage {
-  time_span = "short_term";
+  time_span = "Past Month";
   topGenres: [string, number][];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider,
-    public loadingCtrl: LoadingController, public popoverCtrl: PopoverController) {
-      this.showLoading();
+    public loadingCtrl: LoadingController, public popoverCtrl: PopoverController, public actionCtrl: ActionSheetController) {
+      this.showLoading("short_term");
   }
 
   presentPopover(myEvent) {
@@ -23,20 +23,54 @@ export class GenresPage {
     });
   }
 
-  getTopTracks() {
+  timeSelect() {
+    let action = this.actionCtrl.create({
+      title: 'Select a Timespan',
+      cssClass: 'time-action-sheet',
+      buttons: [
+        {
+          text: 'Past Month',
+          role: 'month',
+          handler: () => {
+            this.time_span = "Past Month";
+            this.showLoading("short_term");
+          }
+        },
+        {
+          text: 'Past 6 Months',
+          role: '6month',
+          handler: () => {
+            this.time_span = "Past 6 Months";
+            this.showLoading("medium_term");
+          }
+        },
+        {
+          text: 'All Time',
+          role: 'alltime',
+          handler: () => {
+            this.time_span = "All Time";
+            this.showLoading("long_term");
+          }
+        }
+      ]
+    })
+    action.present();
+  }
+
+  getTopTracks(range: string) {
     return new Promise(resolve => {
       if (this.restProvider.tokenExpired()) {
         // alert("Token has expired, requesting a new one");
         this.restProvider.requestNewToken()
         .then(() => {
-          return this.restProvider.getTopTracks(this.time_span);
+          return this.restProvider.getTopTracks(range);
         })
         .then((data: any) => {
           resolve(data.items);
         });
       }
       else {
-        this.restProvider.getTopTracks(this.time_span)
+        this.restProvider.getTopTracks(range)
         .then((data: any) => {
           resolve(data.items);
         });
@@ -66,12 +100,12 @@ export class GenresPage {
     })
   }
 
-  getGenres() {
+  getGenres(range: string) {
     // Get tracks first
     let tracks: any;
     let genreMap: Map<string, number> = new Map<string, number>();
 
-    this.getTopTracks()
+    this.getTopTracks(range)
     .then((results) => {
       tracks = results;
     })
@@ -106,13 +140,13 @@ export class GenresPage {
     });
   }
 
-  showLoading() {
+  showLoading(range: string) {
     let loading = this.loadingCtrl.create({
       content: "Loading Data..."
     });
     loading.present()
     .then(() => {
-      return this.getGenres();
+      return this.getGenres(range);
     })
     .then(() => {
       loading.dismiss();

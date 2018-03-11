@@ -23,12 +23,39 @@
 .text {
     color: color($colors, light);
 }
-.select-text {
-    color: color($colors, light);
-}
 .ranking {
     float: right;
 }
-.artist {
+.artist .track {
     float: left;
+}
+#time-select {
+    color: color($colors, primary);
+    font-weight: bold;
+}
+#time-icon {
+    color: color($colors, light);
+    transform: rotate(180deg);
+}
+
+.time-action-sheet {
+    .action-sheet-title {
+        color: color($colors, primary);
+    }
+    .action-sheet-button {
+        color: color($colors, light);
+    }
+    .action-sheet-group {
+        background-color: color($colors, dark);
+    }
+}
+
+.track-alert {
+    .alert-wrapper {
+        background-color: color($colors, dark);
+    }
+    .alert-sub-title {
+        color: darken(color($colors, light), 40%);
+    }
+    color: color($colors, light);
 }

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { ViewController, NavController, NavParams, PopoverController } from 'ionic-angular';
+import { IonicPage, ViewController, NavController, NavParams, PopoverController } from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
+@IonicPage()
 @Component({
   selector: 'page-artist-detail',
   templateUrl: 'artist-detail.html',
@@ -45,6 +46,6 @@ export class ArtistDetailPage {
 
   goTo() {
     this.viewCtrl.dismiss();
-    let browseRef = this.iab.create(this.item.external_urls.spotify, "_system");
+    this.iab.create(this.item.external_urls.spotify, "_system");
   }
 }

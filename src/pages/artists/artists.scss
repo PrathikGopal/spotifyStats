@@ -1,19 +1,5 @@
 page-artists {
-    .ranking {
-        float: right;
-    }
     .artist {
         float: left;
-    }
-    .select-text {
-        color: color($colors, light);
-    }
-    .select-icon {
-        visibility: hidden;
-        //transform: rotate(180deg);
-    }
-    #time-select {
-        flex: none!important;
-        -webkit-flex: none!important;  
     }
 }

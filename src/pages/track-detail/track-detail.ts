@@ -21,6 +21,6 @@ export class TrackDetailPage {
 
   goTo() {
     this.viewCtrl.dismiss();
-    let browseRef = this.iab.create(this.item.external_urls.spotify, "_system");
+    this.iab.create(this.item.external_urls.spotify, "_system");
   }
 }

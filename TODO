@@ -11,10 +11,14 @@ DONE
 -Back button doesn't exit the app
    -Corrected for logging out
    -Seems to work everywhere, keep an eye out.
--Timeframe Select cleaned up
+-Timeframe Select cleaned up (for the fourth time)
 -Padding differences between Artists/Tracks
 -About Page
 -Page: Metrics
    -Top Genres
 -Click down into the artist data
    -Displays album data
+   -Displays Genres
+   -Can open into Spotify
+-Tracks page can open track into Spotify
+-Coloring/styling throughout (lookin' good)

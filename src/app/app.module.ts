@@ -23,6 +23,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { RestProvider } from '../providers/rest/rest';
 import { AppVersion } from '@ionic-native/app-version';
+import { IonicImageLoader } from 'ionic-image-loader';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AppVersion } from '@ionic-native/app-version';
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    IonicImageLoader.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

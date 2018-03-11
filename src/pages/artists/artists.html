@@ -3,14 +3,6 @@
       <ion-title>
         Top Artists
       </ion-title>
-      <ion-item no-lines>
-        <ion-label id="time-select" padding-left><ion-icon name="arrow-dropdown"></ion-icon></ion-label>
-        <ion-select [(ngModel)]="time_span" interface="action-sheet" (ionChange)="showLoading()">
-          <ion-option value="short_term">Past Month</ion-option>
-          <ion-option value="medium_term">Past 6 Months</ion-option>
-          <ion-option value="long_term">All Time</ion-option>
-        </ion-select>
-      </ion-item>
       <ion-buttons end padding-top padding-right>
         <button ion-button icon-only (click)="presentPopover($event)">
           <ion-icon name="more"></ion-icon>
@@ -23,11 +15,18 @@
   <ion-list *ngIf="artists">
     <button color="dark" ion-item no-lines *ngFor="let artist of artists; let i = index" (click)="showArtistDetail(artist)">
       <ion-thumbnail item-start>
-        <img src={{artist.images[1].url}}>
+        <!-- <img src={{artist.images[1].url}}> -->
+        <img-loader src="{{artist.images[1].url}}" useImg></img-loader>
       </ion-thumbnail>
       <h2 class="artist">{{artist.name}}</h2>
       <h2 class="ranking">#{{i + 1}}</h2>
     </button>  
   </ion-list>
 </ion-content>
-  
+
+<ion-footer padding-bottom text-center no-border>
+  <div (click)="timeSelect()">
+    <ion-icon id="time-icon" name="arrow-dropdown"></ion-icon>
+    <div id="time-select">{{time_span}}</div>
+  </div>
+</ion-footer>

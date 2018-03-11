@@ -14,7 +14,7 @@ export class LoginPage {
   }
 
   debugLogin() {
-    this.restProvider.getAccessToken('AQBi4pCFS_w8nmi61Qy5NPLgVP98rHXhuvgLx8bcXGp1NH-ZAAZvEp2_-xvp6qTWSRnwGmHpMuj-5hSufov2GJ6_W04jJnHKPuQIRaZ1d9qZyiEaF9imKsKy_izHi9F1jGOSPh69zuUnD0K0I-jKtkFy845NXZPqRRxX2_lmTKyvnvlCywM_5AWCiWCZFQFdnACKbAEtV8ZKDya4r2o');
+    this.restProvider.getAccessToken('AQBXZ5wuCyHk5DeEjwGhmEwDsnt2RzdzPG4Y_Gul6kyutOw00dZGA7GN460xVoDT7nzOEHtK7LEJrEUEKrleTLkDgAG6xCqg03CgPW-XHo4MGKug0E-rj1SRkXiHUVzldN01fTtDuvibY6YMKgr-gZBIBpvQn3DCghCD1JJifee0oukgmLyfU7QPOphYdSkOe3Qm88CERGVAQhyV5IA');
   }
 
   login() {
