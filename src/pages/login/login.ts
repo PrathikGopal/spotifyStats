@@ -13,6 +13,9 @@ export class LoginPage {
 
   }
 
+  /**
+   * Call the RestProvider's `spotifyOauth()` function and, upon success, set the root to the TabsPage
+   */
   login() {
     this.restProvider.spotifyOauth()
     .then(success => {
@@ -22,14 +25,6 @@ export class LoginPage {
       this.navCtrl.setRoot(TabsPage);
       this.navCtrl.popToRoot();
     });
-  }
-
-  goToTabs() {
-    this.navCtrl.setRoot(TabsPage);
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
   }
 
 }

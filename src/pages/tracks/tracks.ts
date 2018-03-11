@@ -18,6 +18,10 @@ export class TracksPage {
       this.showLoading("short_term");
   }
 
+  /**
+   * Get the top 50 Tracks within a specified time range. Renews token if necessary.
+   * @param range time range of the data to be returned
+   */
   getTopTracks(range: string) {
     if (this.restProvider.tokenExpired()) {
       // alert("Token has expired, requesting a new one");
@@ -37,6 +41,10 @@ export class TracksPage {
     }
   }
 
+  /**
+   * Open a specified track's Spotify listing
+   * @param track Track to be opened
+   */
   openTrack(track) {
     let alert = this.alertCtrl.create({
       title: 'Open in Spotify?',
@@ -63,6 +71,9 @@ export class TracksPage {
     alert.present();
   }
 
+  /**
+   * Select the time range to be used
+   */
   timeSelect() {
     let action = this.actionCtrl.create({
       title: 'Select a Timespan',
@@ -97,6 +108,10 @@ export class TracksPage {
     action.present();
   }
 
+  /**
+   * Display the Popover page to "About" and "Logout"
+   * @param myEvent Event object
+   */
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
@@ -104,6 +119,10 @@ export class TracksPage {
     });
   }
 
+  /**
+   * Display the loading popup and retrieve the top tracks
+   * @param range time range of the data to be returned
+   */
   showLoading(range: string) {
     let loading = this.loadingCtrl.create({
       content: "Loading Data..."

@@ -16,6 +16,10 @@ export class GenresPage {
       this.showLoading("short_term");
   }
 
+  /**
+   * Display the Popover page to "About" and "Logout"
+   * @param myEvent Event object
+   */
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
@@ -23,6 +27,9 @@ export class GenresPage {
     });
   }
 
+  /**
+   * Select the time range to be used
+   */
   timeSelect() {
     let action = this.actionCtrl.create({
       title: 'Select a Timespan',
@@ -57,6 +64,10 @@ export class GenresPage {
     action.present();
   }
 
+  /**
+   * Get the top 50 tracks in a specified time range. Renews token if necessary.
+   * @param range time range of the data to be returned
+   */
   getTopTracks(range: string) {
     return new Promise(resolve => {
       if (this.restProvider.tokenExpired()) {
@@ -78,6 +89,10 @@ export class GenresPage {
     });
   }
 
+  /**
+   * Get a specified Artist
+   * @param id Artist ID
+   */
   getArtist(id) {
     // "3j4ihH7xANVDGQhcDFJby7" Landon Tewers ID
     return new Promise(resolve => {
@@ -100,6 +115,10 @@ export class GenresPage {
     })
   }
 
+  /**
+   * Determine the top genres based on the Top 50 Track data
+   * @param range time range of the data to be returned
+   */
   getGenres(range: string) {
     // Get tracks first
     let tracks: any;
@@ -140,6 +159,10 @@ export class GenresPage {
     });
   }
 
+  /**
+   * Display the loading popup and determine the top Genres
+   * @param range time range of the data to be returned
+   */
   showLoading(range: string) {
     let loading = this.loadingCtrl.create({
       content: "Loading Data..."

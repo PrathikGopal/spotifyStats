@@ -14,10 +14,16 @@ export class PopoverPage {
 
   }
 
+  /**
+   * Close this page
+   */
   close() {
     this.viewCtrl.dismiss();
   }
 
+  /**
+   * Call the RestProvider's `logout()` function, then set the root to the Login page
+   */
   logout() {
     this.restProvider.logout()
     .then(() => {
@@ -29,6 +35,9 @@ export class PopoverPage {
     });
   }
 
+  /**
+   * Display the About page
+   */
   about() { // Modal
     this.viewCtrl.dismiss() // Dismiss the popover
     .then(() => {

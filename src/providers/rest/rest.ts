@@ -29,6 +29,7 @@ export class RestProvider {
 
   /**
   * Retrieves the user's top artists for a "medium-term" time period (default)
+  * @param timespan time range of the data to be returned
   */
   getTopArtists(timespan = "short_term") {
     return new Promise(resolve => {
@@ -41,7 +42,7 @@ export class RestProvider {
       .subscribe(data => {
         resolve(data);
       }, (err) => {
-        alert(JSON.stringify(err));
+        alert("Could not retrieve top Artist data");
         console.log(err);
       });
     });
@@ -49,6 +50,7 @@ export class RestProvider {
 
   /**
   * Retrieve a single artist object
+  * @param id Artist ID
   */
   getArtist(id: string) {
     return new Promise(resolve => {
@@ -59,7 +61,7 @@ export class RestProvider {
       .subscribe(data => {
         resolve(data);
       }, (err) => {
-        alert(JSON.stringify(err));
+        alert("Could not retrieve Artist data");
         console.log(err);
       });
     });
@@ -67,6 +69,7 @@ export class RestProvider {
 
   /**
   * Retrieve an array of Albums relating to a single Artist ID
+  * @param id Artist ID
   */
  getArtistAlbums(id: string) {
    return new Promise(resolve => {
@@ -77,7 +80,7 @@ export class RestProvider {
      .subscribe(data => {
        resolve(data);
      }, (err) => {
-       alert(JSON.stringify(err));
+       alert("Could not retrieve Album data");
        console.log(err);
      });
    });
@@ -85,6 +88,7 @@ export class RestProvider {
 
   /**
   * Retrieves the user's top tracks for a "medium-term" time period (default)
+  * @param timespan time range of the data to be returned
   */
   getTopTracks(timespan = "short_term") {
     return new Promise(resolve => {
@@ -97,7 +101,7 @@ export class RestProvider {
       .subscribe(data => {
         resolve(data);
       }, (err) => {
-        alert(JSON.stringify(err));
+        alert("Could not retrieve top Track data");
         console.log(err);
       });
     });
@@ -135,6 +139,7 @@ export class RestProvider {
 
   /**
    * Retrieve access and refresh tokens through the uTrack Web Service
+   * @param oauthCode The code returned by the Spotify Authorization Service
    */
   getTokens(oauthCode: string) {
     return new Promise(resolve => {
@@ -161,7 +166,8 @@ export class RestProvider {
         //alert("Initial Tokens all set");
         resolve(data);
       }, (err) => {
-        alert(JSON.stringify(err));
+        alert("Could not connect to Spotify Service");
+        console.log(err);
       })
     })
   }
@@ -188,8 +194,8 @@ export class RestProvider {
         //alert("New tokens assigned and saved");
         resolve(data);
       }, (err) => {
-        alert("Failed to acquire access token");
-        alert(JSON.stringify(err));
+        alert("Failed to refresh Spotify connection");
+        console.log(err);
       });
     })
   }

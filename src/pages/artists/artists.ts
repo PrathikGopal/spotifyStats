@@ -20,9 +20,12 @@ export class ArtistsPage {
       this.showLoading("short_term");
   }
 
+  /**
+   * Get the top 50 Artists within a specified time range. Renews token if necessary.
+   * @param range time range of the data to be returned
+   */
   getTopArtists(range: string) {
     if (this.restProvider.tokenExpired()) {
-      //alert("Token has expired, requesting a new one");
       this.restProvider.requestNewToken()
       .then(() => {
         return this.restProvider.getTopArtists(range);
@@ -39,6 +42,9 @@ export class ArtistsPage {
     }
   }
 
+  /**
+   * Select the time range to be used
+   */
   timeSelect() {
     let action = this.actionCtrl.create({
       title: 'Select a Timespan',
@@ -73,6 +79,10 @@ export class ArtistsPage {
     action.present();
   }
 
+  /**
+   * Display the Popover Page to "About" and "Logout"
+   * @param myEvent Event object
+   */
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
@@ -80,12 +90,20 @@ export class ArtistsPage {
     });
   }
 
+  /**
+   * Display more information on a specific Artist
+   * @param artist The Artist object to be displayed
+   */
   showArtistDetail(artist) { // Modal
     this.modal = this.modalCtrl.create(ArtistDetailPage, {item: artist});
     // Send the artist to the modal
     this.modal.present();
   }
 
+  /**
+   * Display the loading popup and retrieve the top artists
+   * @param range time range of the data to be returned
+   */
   showLoading(range: string) {
     let loading = this.loadingCtrl.create({
       content: "Loading Data..."

@@ -19,10 +19,17 @@ export class ArtistDetailPage {
       this.getArtistAlbums(this.item.id);
   }
 
+  /**
+   * Close this page
+   */
   close() {
     this.viewCtrl.dismiss();
   }
 
+  /**
+   * Retrieve Album objects relating to a specified Artist
+   * @param id Artist ID
+   */
   getArtistAlbums(id: string) {
     if (this.restProvider.tokenExpired()) {
       //alert("Token has expired, requesting a new one");
@@ -44,6 +51,9 @@ export class ArtistDetailPage {
     }
   }
 
+  /**
+   * Launch the in-app browser to the artist's Spotify page
+   */
   goTo() {
     this.viewCtrl.dismiss();
     this.iab.create(this.item.external_urls.spotify, "_system");
