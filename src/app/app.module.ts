@@ -8,7 +8,6 @@ import { AboutPage } from '../pages/about/about';
 import { ArtistsPage } from '../pages/artists/artists';
 import { ArtistDetailPage } from '../pages/artist-detail/artist-detail';
 import { TracksPage } from '../pages/tracks/tracks';
-import { TrackDetailPage } from '../pages/track-detail/track-detail';
 import { GenresPage } from '../pages/genres/genres';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -34,7 +33,6 @@ import { IonicImageLoader } from 'ionic-image-loader';
     ArtistsPage,
     ArtistDetailPage,
     TracksPage,
-    TrackDetailPage,
     GenresPage,
     LoginPage,
     PopoverPage,
@@ -54,7 +52,6 @@ import { IonicImageLoader } from 'ionic-image-loader';
     ArtistsPage,
     ArtistDetailPage,
     TracksPage,
-    TrackDetailPage,
     GenresPage,
     LoginPage,
     PopoverPage,

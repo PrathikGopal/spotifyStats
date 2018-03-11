@@ -1,11 +1,11 @@
 page-login {
-    // .black {
-    //     background-color: color($colors, dark);
-    // }
-    // .text {
-    //     color: color($colors, light);
-    // }
-    // .select-text {
-    //     color: color($colors, light);
-    // }
+    .centered {
+        width: 178.72px; // Need exact dimensions of the element being centered
+        height: 56px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -86.36px;
+        margin-top: -28px;
+     }
 }

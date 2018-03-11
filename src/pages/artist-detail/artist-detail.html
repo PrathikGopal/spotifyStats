@@ -12,7 +12,9 @@
 <ion-content padding>
   <div text-center>
       <img height="180" width="180" src="{{item.images[1].url}}"><br>
-      <span id="followers">{{item.followers.total | number:0}} FOLLOWERS</span>
+      <span id="followers">
+        {{item.followers.total | number:0}} FOLLOWERS
+      </span>
   </div>
     <ion-grid text-wrap>
       <ion-row>
@@ -35,7 +37,10 @@
       </ion-row>
     </ion-grid>
     
-    <div *ngIf="albums?.length > 0" class="title">Albums</div>
+    <div *ngIf="albums?.length > 0" class="title">
+      <img class="spotify-icon" height="21" width="21" src="assets/imgs/Spotify_Icon_RGB_Green.png">
+      Albums
+    </div>
     <ion-scroll id="album-scroll" *ngIf="albums?.length > 0" scrollX="true" direction="x">
       <ion-card color="dark" *ngFor="let album of albums" no-shadow>
         <!-- <img src={{album.images[0].url}}><br> -->
@@ -44,7 +49,10 @@
       </ion-card>
     </ion-scroll>
 
-    <div *ngIf="singles?.length > 0" class="title">Singles and EPs</div>
+    <div *ngIf="singles?.length > 0" class="title">
+      <img class="spotify-icon" height="21" width="21" src="assets/imgs/Spotify_Icon_RGB_Green.png">
+      Singles and EPs
+    </div>
     <ion-scroll id="single-scroll" *ngIf="singles?.length > 0" scrollX="true" direction="x">  
         <ion-card color="dark" *ngFor="let single of singles" no-shadow>
           <!-- <img src={{single.images[0].url}}><br> -->
@@ -55,5 +63,5 @@
 </ion-content>
 
 <ion-footer padding text-center>
-  <button ion-button round color="primary" (click)="goTo()">Open with Spotify</button>
+  <button ion-button round color="primary" (click)="goTo()">Open in Spotify</button>
 </ion-footer>

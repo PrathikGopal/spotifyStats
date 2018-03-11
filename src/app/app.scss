@@ -41,6 +41,7 @@
 .time-action-sheet {
     .action-sheet-title {
         color: color($colors, primary);
+        font-weight: bold;
     }
     .action-sheet-button {
         color: color($colors, light);

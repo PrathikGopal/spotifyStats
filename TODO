@@ -1,10 +1,9 @@
 TODO
 -Web API
--Some kind of image/banner on the login page (looks a little bare)
+-Spotify logo/branding on the login page
+-Cleanup the about page
 -Splashscreen -> Awaiting artwork
 -Timeframe selection should carry over to the other page
--Wait for images to load?
-   -Look into LazyLoading
 
    
 DONE
@@ -22,3 +21,4 @@ DONE
    -Can open into Spotify
 -Tracks page can open track into Spotify
 -Coloring/styling throughout (lookin' good)
+-Image lazy loading

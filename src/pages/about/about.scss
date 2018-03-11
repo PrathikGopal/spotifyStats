@@ -1,9 +1,20 @@
 page-about {
-    #footer {
+    .title {
+        color: darken(color($colors, light), 40%);
+    }
+    ion-item {
         color: color($colors, light);
+        font-size: 17px;
+    }
+    #footer {
+        color: darken(color($colors, light), 40%);
     }
     p {
         float: left;
         padding-top: 3px;
+    }
+    .spotify-logo {
+        padding-top: 3vh;
+        padding-bottom: 3vh;
     }
 }
