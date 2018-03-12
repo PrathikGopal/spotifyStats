@@ -5,12 +5,11 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class RestProvider {
+  webServiceURL = 'https://my-project-1497801619165.appspot.com';
   apiUrl = "https://api.spotify.com/v1";
   accessToken: string;
   refreshToken: string;
   expiration: any;
-
-  webServiceURL = 'https://my-project-1497801619165.appspot.com';
 
   constructor(private storage: Storage, public http: HttpClient, public iab: InAppBrowser) {
     storage.get('accessToken').then(accessToken => {
