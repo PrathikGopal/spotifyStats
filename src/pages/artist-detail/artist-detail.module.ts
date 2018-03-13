@@ -8,4 +8,4 @@ import { ArtistDetailPage } from '../artist-detail/artist-detail';
     exports: [ArtistDetailPage],
     imports: [IonicPageModule.forChild(ArtistDetailPage), SharedModule]
 })
-export class Module {}
+export class ArtistDetailModule {}

@@ -24,15 +24,20 @@ import { RestProvider } from '../providers/rest/rest';
 import { AppVersion } from '@ionic-native/app-version';
 import { IonicImageLoader } from 'ionic-image-loader';
 
+// Modules
+import { ArtistDetailModule } from '../pages/artist-detail/artist-detail.module';
+import { TracksModule } from '../pages/tracks/tracks.module';
+import { ArtistsModule } from '../pages/artists/artists.module';
+
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
     TabsPage,
-    ArtistsPage,
-    ArtistDetailPage,
-    TracksPage,
+    //ArtistsPage,
+    //ArtistDetailPage,
+    //TracksPage,
     GenresPage,
     LoginPage,
     PopoverPage,
@@ -40,9 +45,13 @@ import { IonicImageLoader } from 'ionic-image-loader';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ArtistsModule,
+    ArtistDetailModule,
+    TracksModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
-    IonicImageLoader.forRoot()
+    IonicImageLoader.forRoot(),
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

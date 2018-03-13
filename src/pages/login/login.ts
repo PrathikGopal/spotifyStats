@@ -26,5 +26,4 @@ export class LoginPage {
       this.navCtrl.popToRoot();
     });
   }
-
 }

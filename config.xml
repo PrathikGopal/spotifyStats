@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="5" id="com.gmail.joebill79.utrack" version="0.8.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="1" id="com.gmail.jbillstromdevelopment.utrack" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>uTrack</name>
     <description>An app to display Spotify user metrics, written with Ionic/Cordova</description>
-    <author email="joebill79@gmail.com" href="mailto:joebill79@gmail.com">Joseph Billstrom</author>
+    <author email="jbillstromdevelopment@gmail.com" href="mailto:jbillstromdevelopment@gmail.com">Joseph Billstrom</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -19,6 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -87,5 +88,6 @@
     <plugin name="cordova-sqlite-storage" spec="^2.2.1" />
     <plugin name="cordova-plugin-app-version" spec="^0.1.9" />
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
+    <allow-navigation href="http://192.168.0.52:8100" />
     <engine name="android" spec="7.0.0" />
 </widget>
