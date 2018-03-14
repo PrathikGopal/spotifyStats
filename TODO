@@ -1,10 +1,7 @@
 TODO
--Web API
--Spotify logo/branding on the login page
--Cleanup the about page
--Splashscreen -> Awaiting artwork
 -Timeframe selection should carry over to the other page
-
+-Click an album to open it on Spotify
+-Genres -> Specify 50 *top* tracks
    
 DONE
 -Back button doesn't exit the app

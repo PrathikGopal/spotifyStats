@@ -56,7 +56,7 @@
     <ion-scroll id="single-scroll" *ngIf="singles?.length > 0" scrollX="true" direction="x">  
         <ion-card color="dark" *ngFor="let single of singles" no-shadow>
           <!-- <img src={{single.images[0].url}}><br> -->
-          <img-loader src="{{single.images[0].url}}" useImg></img-loader>
+          <img-loader src="{{single.images[0].url}}" useImg></img-loader><br>
           {{single.name}}
         </ion-card>
       </ion-scroll>
