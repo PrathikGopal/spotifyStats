@@ -1,9 +1,7 @@
-# Specifies intentionally untracked files to ignore when using Git
-# http://git-scm.com/docs/gitignore
-
 *~
 *.sw[mnpcod]
 *.log
+*.lock
 *.tmp
 *.tmp.*
 log.txt
@@ -18,10 +16,13 @@ npm-debug.log*
 .tmp/
 .versions/
 coverage/
+collection/
 dist/
 node_modules/
 tmp/
 temp/
+core/theme-builder/
+core/test-components/
 hooks/
 platforms/
 plugins/
@@ -33,3 +34,25 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+.env
+
+.package.tmp.json
+
+src/themes/version.scss
+scripts/e2e/webpackEntryPoints.json
+scripts/build/e2e-generated-tsconfig.json
+*.css.ts
+
+stencil-stats.json
+
+# demo stuff
+demos/node_modules
+demos/polyfills
+demos/css
+demos/fonts
+demos/src/**/*.js
+demos/src/**/*.map
+demos/src/**/*.ngfactory.ts
+demos/src/**/*.d.ts
+demos/src/**/*.metadata.json
+demos/src/**/*.css.shim.ts

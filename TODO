@@ -1,7 +1,6 @@
 TODO
 -Timeframe selection should carry over to the other page
 -Click an album to open it on Spotify
--Genres -> Specify 50 *top* tracks
    
 DONE
 -Back button doesn't exit the app
@@ -19,3 +18,4 @@ DONE
 -Tracks page can open track into Spotify
 -Coloring/styling throughout (lookin' good)
 -Image lazy loading
+-Genres -> Specify 50 *top* tracks
