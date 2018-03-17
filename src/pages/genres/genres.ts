@@ -8,12 +8,20 @@ import { PopoverPage } from '../popover/popover';
   templateUrl: 'genres.html',
 })
 export class GenresPage {
-  time_span = "Past Month";
+  //time_span = "Past Month";
+  timeLoaded: string;
   topGenres: [string, number][];
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider,
     public loadingCtrl: LoadingController, public popoverCtrl: PopoverController, public actionCtrl: ActionSheetController) {
-      this.showLoading("short_term");
+      //this.showLoading();
+  }
+
+  ionViewWillEnter() {
+    if (this.timeLoaded !== this.restProvider.timeLabel) {
+      // Time range was changed on a different page; load accordingly
+      this.showLoading();
+    }
   }
 
   /**
@@ -39,24 +47,27 @@ export class GenresPage {
           text: 'Past Month',
           role: 'month',
           handler: () => {
-            this.time_span = "Past Month";
-            this.showLoading("short_term");
+            //this.time_span = "Past Month";
+            this.restProvider.timeLabel = "Past Month";
+            this.showLoading();
           }
         },
         {
           text: 'Past 6 Months',
           role: '6month',
           handler: () => {
-            this.time_span = "Past 6 Months";
-            this.showLoading("medium_term");
+            //this.time_span = "Past 6 Months";
+            this.restProvider.timeLabel = "Past 6 Months";
+            this.showLoading();
           }
         },
         {
           text: 'All Time',
           role: 'alltime',
           handler: () => {
-            this.time_span = "All Time";
-            this.showLoading("long_term");
+            //this.time_span = "All Time";
+            this.restProvider.timeLabel = "All Time";
+            this.showLoading();
           }
         }
       ]
@@ -66,22 +77,21 @@ export class GenresPage {
 
   /**
    * Get the top 50 tracks in a specified time range. Renews token if necessary.
-   * @param range time range of the data to be returned
    */
-  getTopTracks(range: string) {
+  getTopTracks() {
     return new Promise(resolve => {
       if (this.restProvider.tokenExpired()) {
         // alert("Token has expired, requesting a new one");
         this.restProvider.requestNewToken()
         .then(() => {
-          return this.restProvider.getTopTracks(range);
+          return this.restProvider.getTopTracks();
         })
         .then((data: any) => {
           resolve(data.items);
         });
       }
       else {
-        this.restProvider.getTopTracks(range)
+        this.restProvider.getTopTracks()
         .then((data: any) => {
           resolve(data.items);
         });
@@ -117,14 +127,13 @@ export class GenresPage {
 
   /**
    * Determine the top genres based on the Top 50 Track data
-   * @param range time range of the data to be returned
    */
-  getGenres(range: string) {
+  getGenres() {
     // Get tracks first
     let tracks: any;
     let genreMap: Map<string, number> = new Map<string, number>();
 
-    this.getTopTracks(range)
+    this.getTopTracks()
     .then((results) => {
       tracks = results;
     })
@@ -156,20 +165,20 @@ export class GenresPage {
         return b["1"] - a["1"];
       });
       this.topGenres = mapArray.slice(0, 10); // Top 10 genres
+      this.timeLoaded = this.restProvider.timeLabel;
     });
   }
 
   /**
    * Display the loading popup and determine the top Genres
-   * @param range time range of the data to be returned
    */
-  showLoading(range: string) {
+  showLoading() {
     let loading = this.loadingCtrl.create({
       content: "Loading Data..."
     });
     loading.present()
     .then(() => {
-      return this.getGenres(range);
+      return this.getGenres();
     })
     .then(() => {
       loading.dismiss();

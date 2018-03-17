@@ -11,33 +11,42 @@ import { PopoverPage } from '../popover/popover';
 })
 export class ArtistsPage {
   artists: any;
-  time_span = "Past Month";
+  timeLoaded: string;
+  //time_span = "Past Month";
   modal: Modal;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider,
     public popoverCtrl: PopoverController, public loadingCtrl: LoadingController,
     public modalCtrl: ModalController, public actionCtrl: ActionSheetController) {
-      this.showLoading("short_term");
+      //this.showLoading();
+  }
+
+  ionViewWillEnter() {
+    if (this.timeLoaded !== this.restProvider.timeLabel) {
+      // Time range was changed on a different page; load accordingly
+      this.showLoading();
+    }
   }
 
   /**
    * Get the top 50 Artists within a specified time range. Renews token if necessary.
-   * @param range time range of the data to be returned
    */
-  getTopArtists(range: string) {
+  getTopArtists() {
     if (this.restProvider.tokenExpired()) {
       this.restProvider.requestNewToken()
       .then(() => {
-        return this.restProvider.getTopArtists(range);
+        return this.restProvider.getTopArtists();
       })
       .then((data: any) => {
         this.artists = data.items;
+        this.timeLoaded = this.restProvider.timeLabel;
       });
     }
     else {
-      this.restProvider.getTopArtists(range)
+      this.restProvider.getTopArtists()
       .then((data: any) => {
         this.artists = data.items;
+        this.timeLoaded = this.restProvider.timeLabel;
       });
     }
   }
@@ -54,24 +63,27 @@ export class ArtistsPage {
           text: 'Past Month',
           role: 'month',
           handler: () => {
-            this.time_span = "Past Month";
-            this.showLoading("short_term");
+            //this.time_span = "Past Month";
+            this.restProvider.timeLabel = "Past Month";
+            this.showLoading();
           }
         },
         {
           text: 'Past 6 Months',
           role: '6month',
           handler: () => {
-            this.time_span = "Past 6 Months";
-            this.showLoading("medium_term");
+            //this.time_span = "Past 6 Months";
+            this.restProvider.timeLabel = "Past 6 Months";
+            this.showLoading();
           }
         },
         {
           text: 'All Time',
           role: 'alltime',
           handler: () => {
-            this.time_span = "All Time";
-            this.showLoading("long_term");
+            //this.time_span = "All Time";
+            this.restProvider.timeLabel = "All Time";
+            this.showLoading();
           }
         }
       ]
@@ -102,15 +114,14 @@ export class ArtistsPage {
 
   /**
    * Display the loading popup and retrieve the top artists
-   * @param range time range of the data to be returned
    */
-  showLoading(range: string) {
+  showLoading() {
     let loading = this.loadingCtrl.create({
       content: "Loading Data..."
     });
     loading.present()
     .then(() => {
-      return this.getTopArtists(range);
+      return this.getTopArtists();
     })
     .then(() => {
       loading.dismiss();

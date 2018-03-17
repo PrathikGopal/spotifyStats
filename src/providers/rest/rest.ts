@@ -10,27 +10,40 @@ export class RestProvider {
   accessToken: string;
   refreshToken: string;
   expiration: any;
+  timeLabel: string;
 
   constructor(private storage: Storage, public http: HttpClient, public iab: InAppBrowser) {
+    this.timeLabel = "Past Month";
     storage.get('accessToken').then(accessToken => {
       this.accessToken = accessToken;
-      //alert("Access Token Loaded " + this.accessToken);
     });
     storage.get('refreshToken').then(refreshToken => {
       this.refreshToken = refreshToken;
-      //alert("RefreshToken Loaded " + this.refreshToken);
     })
     storage.get('expiration').then(expiration => {
       this.expiration = expiration;
-      //alert("Expiration " + this.expiration);
     });
   }
 
   /**
   * Retrieves the user's top artists for a "medium-term" time period (default)
-  * @param timespan time range of the data to be returned
   */
-  getTopArtists(timespan = "short_term") {
+  getTopArtists() {
+    let timespan: string;
+    switch(this.timeLabel) { // Determine the time range to request
+      case "Past Month":
+        timespan = "short_term";
+        break;
+      case "Past 6 Months":
+        timespan = "medium_term";
+        break;
+      case "All Time":
+        timespan = "long_term";
+        break;
+      default:
+        this.timeLabel = "Past Month";
+        timespan = "short_term";
+    }
     return new Promise(resolve => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
       let params = new HttpParams().set('time_range', timespan).set('limit', "50");
@@ -87,9 +100,23 @@ export class RestProvider {
 
   /**
   * Retrieves the user's top tracks for a "medium-term" time period (default)
-  * @param timespan time range of the data to be returned
   */
-  getTopTracks(timespan = "short_term") {
+  getTopTracks() {
+    let timespan: string;
+    switch(this.timeLabel) { // Determine the time range to request
+      case "Past Month":
+        timespan = "short_term";
+        break;
+      case "Past 6 Months":
+        timespan = "medium_term";
+        break;
+      case "All Time":
+        timespan = "long_term";
+        break;
+      default:
+        this.timeLabel = "Past Month";
+        timespan = "short_term";
+    }
     return new Promise(resolve => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
       let params = new HttpParams().set('time_range', timespan).set('limit', "50");
@@ -148,21 +175,16 @@ export class RestProvider {
       }
       this.http.post(this.webServiceURL+'/getTokens', body)
       .subscribe((data: any) => {
-        //alert(JSON.stringify(data));
         this.storage.set('accessToken', data.access_token);
         this.accessToken = data.access_token;
-        //alert("Access Token Set: " + this.accessToken);
 
         this.storage.set('refreshToken', data.refresh_token);
         this.refreshToken = data.refresh_token;
-        //alert("Refresh Token Set: " + this.refreshToken);
 
         let expiration = Date.now() + (data.expires_in * 1000);
         this.storage.set('expiration', expiration);
         this.expiration = expiration;
-        //alert("Expiration Set: " + this.expiration);
 
-        //alert("Initial Tokens all set");
         resolve(data);
       }, (err) => {
         alert("Could not connect to Spotify Service");
@@ -183,14 +205,11 @@ export class RestProvider {
       .subscribe((data: any) => {
         this.storage.set('accessToken', data.access_token);
         this.accessToken = data.access_token;
-        //alert("Access Token Set: " + this.accessToken);
 
         let expiration = Date.now() + (data.expires_in * 1000);
         this.storage.set('expiration', expiration);
         this.expiration = expiration;
-        //alert("Expiration Set: " + this.expiration);
 
-        //alert("New tokens assigned and saved");
         resolve(data);
       }, (err) => {
         alert("Failed to refresh Spotify connection");

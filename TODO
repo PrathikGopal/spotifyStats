@@ -1,5 +1,4 @@
 TODO
--Timeframe selection should carry over to the other page
 -Click an album to open it on Spotify
    
 DONE
@@ -19,3 +18,4 @@ DONE
 -Coloring/styling throughout (lookin' good)
 -Image lazy loading
 -Genres -> Specify 50 *top* tracks
+-Timeframe selection should carry over to the other page
