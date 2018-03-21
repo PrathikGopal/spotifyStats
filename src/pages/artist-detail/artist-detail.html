@@ -41,7 +41,7 @@
       <img class="spotify-icon" height="21" width="21" src="assets/imgs/Spotify_Icon_RGB_Green.png">
       Albums
     </div>
-    <ion-scroll id="album-scroll" *ngIf="albums?.length > 0" scrollX="true" direction="x">
+    <ion-scroll *ngIf="albums?.length > 0" scrollX="true" direction="x">
       <ion-card color="dark" *ngFor="let album of albums" no-shadow>
         <!-- <img src={{album.images[0].url}}><br> -->
         <img-loader src="{{album.images[0].url}}" useImg></img-loader><br>
@@ -53,13 +53,37 @@
       <img class="spotify-icon" height="21" width="21" src="assets/imgs/Spotify_Icon_RGB_Green.png">
       Singles and EPs
     </div>
-    <ion-scroll id="single-scroll" *ngIf="singles?.length > 0" scrollX="true" direction="x">  
-        <ion-card color="dark" *ngFor="let single of singles" no-shadow>
-          <!-- <img src={{single.images[0].url}}><br> -->
-          <img-loader src="{{single.images[0].url}}" useImg></img-loader><br>
-          {{single.name}}
-        </ion-card>
-      </ion-scroll>
+    <ion-scroll *ngIf="singles?.length > 0" scrollX="true" direction="x">  
+      <ion-card color="dark" *ngFor="let single of singles" no-shadow>
+        <!-- <img src={{single.images[0].url}}><br> -->
+        <img-loader src="{{single.images[0].url}}" useImg></img-loader><br>
+        {{single.name}}
+      </ion-card>
+    </ion-scroll>
+
+    <div *ngIf="appearsOn?.length > 0" class="title">
+      <img class="spotify-icon" height="21" width="21" src="assets/imgs/Spotify_Icon_RGB_Green.png">
+      Appears On
+    </div>
+    <ion-scroll *ngIf="appearsOn?.length > 0" scrollX="true" direction="x">  
+      <ion-card color="dark" *ngFor="let album of appearsOn" no-shadow>
+        <!-- <img src={{single.images[0].url}}><br> -->
+        <img-loader src="{{album.images[0].url}}" useImg></img-loader><br>
+        {{album.name}}
+      </ion-card>
+    </ion-scroll>
+
+    <div *ngIf="compilations?.length > 0" class="title">
+      <img class="spotify-icon" height="21" width="21" src="assets/imgs/Spotify_Icon_RGB_Green.png">
+      Appears On
+    </div>
+    <ion-scroll *ngIf="compilations?.length > 0" scrollX="true" direction="x">  
+      <ion-card color="dark" *ngFor="let album of compilations" no-shadow>
+        <!-- <img src={{single.images[0].url}}><br> -->
+        <img-loader src="{{album.images[0].url}}" useImg></img-loader><br>
+        {{album.name}}
+      </ion-card>
+    </ion-scroll>
 </ion-content>
 
 <ion-footer padding text-center>

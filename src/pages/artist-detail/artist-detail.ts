@@ -12,6 +12,8 @@ export class ArtistDetailPage {
   item: any;
   albums: any;
   singles: any;
+  appearsOn: any;
+  compilations: any;
 
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public navParams: NavParams,
     public restProvider: RestProvider, public iab: InAppBrowser, public popoverCtrl: PopoverController) {
@@ -32,21 +34,28 @@ export class ArtistDetailPage {
    */
   getArtistAlbums(id: string) {
     if (this.restProvider.tokenExpired()) {
-      //alert("Token has expired, requesting a new one");
       this.restProvider.requestNewToken()
       .then(() => {
         return this.restProvider.getArtistAlbums(this.item.id);
       })
       .then((albums: any) => {
-        this.albums = albums.items.filter(album => album.album_type == "album");
-        this.singles = albums.items.filter(album => album.album_type == "single");
+        //this.albums = albums.items.filter(album => album.album_type == "album");
+        //this.singles = albums.items.filter(album => album.album_type == "single");
+        this.albums = albums.items.filter(album => album.album_group == "album");
+        this.singles = albums.items.filter(album => album.album_group == "single");
+        this.appearsOn = albums.items.filter(album => album.album_group == "appears_on");
+        this.compilations = albums.items.filter(album => album.album_group == "compilation");
       });
     }
     else {
       this.restProvider.getArtistAlbums(this.item.id)
       .then((albums: any) => {
-        this.albums = albums.items.filter(album => album.album_type == "album");
-        this.singles = albums.items.filter(album => album.album_type == "single");
+        //this.albums = albums.items.filter(album => album.album_type == "album");
+        //this.singles = albums.items.filter(album => album.album_type == "single");
+        this.albums = albums.items.filter(album => album.album_group == "album");
+        this.singles = albums.items.filter(album => album.album_group == "single");
+        this.appearsOn = albums.items.filter(album => album.album_group == "appears_on");
+        this.compilations = albums.items.filter(album => album.album_group == "compilation");
       });
     }
   }
