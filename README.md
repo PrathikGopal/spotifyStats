@@ -7,7 +7,11 @@ Note: There is currently no license on this application
 
 ## CHANGELOG
 
-### 1.1.0 - Current
+### 1.2.0 - Current
+- "Appears On" and "Compilation" album sections
+- Thumbnail cropping corrections
+
+### 1.1.0
 - First public release
 - Timeframe now carries over across all pages
    - No more re-selecting on each page
