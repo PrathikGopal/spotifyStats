@@ -26,6 +26,9 @@ page-artist-detail {
         float: left;
         margin-right: 10px;
     }
+    #artist-image {
+        object-fit: cover;
+    }
     ion-card {
         width: 40% !important;
         display: inline-block;

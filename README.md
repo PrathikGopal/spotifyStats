@@ -7,7 +7,10 @@ Note: There is currently no license on this application
 
 ## CHANGELOG
 
-### 1.2.0 - Current
+### 1.2.1
+- Artist detail image cropping
+
+### 1.2.0
 - "Appears On" and "Compilation" album sections
 - Thumbnail cropping corrections
 
