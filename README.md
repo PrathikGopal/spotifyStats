@@ -7,6 +7,9 @@ Note: There is currently no license on this application
 
 ## CHANGELOG
 
+### 1.3.1
+- Incorrect email formatting, oops
+
 ### 1.3.0
 - Genres are now represented as bar graphs
 - Donate button added
