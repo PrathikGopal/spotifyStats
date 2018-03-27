@@ -11,6 +11,7 @@ export class GenresPage {
   //time_span = "Past Month";
   timeLoaded: string;
   topGenres: [string, number][];
+  genreWidth = new Array(10);
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public restProvider: RestProvider,
     public loadingCtrl: LoadingController, public popoverCtrl: PopoverController, public actionCtrl: ActionSheetController) {
@@ -165,6 +166,9 @@ export class GenresPage {
         return b["1"] - a["1"];
       });
       this.topGenres = mapArray.slice(0, 10); // Top 10 genres
+      for (var i = 0; i < this.genreWidth.length; i++) {
+        this.genreWidth[i] = (this.topGenres[i]["1"] * 2).toString() + '%';
+      }
       this.timeLoaded = this.restProvider.timeLabel;
     });
   }

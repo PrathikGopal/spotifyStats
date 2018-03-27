@@ -12,14 +12,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list color="dark" no-lines *ngIf="topGenres">
-    <ion-item *ngFor="let genreMapping of topGenres; let i = index">
-      <h2 class="genre">{{genreMapping["0"]}}</h2>
-      <div class="ranking">#{{i + 1}}</div>
-      <br><br>
-      <p class="sublabel">{{genreMapping["1"]}} of 50 Top Tracks</p>
-    </ion-item>
-  </ion-list>
+  <ion-list no-lines *ngIf="topGenres">
+      <ion-item *ngFor="let genreMapping of topGenres; let i = index">
+        <h2 class="genre">{{genreMapping["0"]}}</h2><br>
+        <div class="outer-bar">
+          <div class="inner-bar" [style.width]=genreWidth[i]>
+          </div>
+        </div>
+        <p class="sublabel">{{genreWidth[i]}} of Top Tracks</p>
+      </ion-item>
+    </ion-list>
 </ion-content>
 
 <ion-footer padding-bottom text-center no-border>

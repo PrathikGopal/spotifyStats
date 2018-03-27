@@ -1,6 +1,7 @@
 page-genres {
     .ranking {
         float: right;
+        margin-top: 5px;
     }
     .genre {
         float: left;
@@ -8,6 +9,9 @@ page-genres {
     }
     .sublabel {
         color: darken(color($colors, light), 40%);
+        float: right;
+        margin-top: 3px;
+        margin-right: 5%;
     }
     .select-icon {
         visibility: hidden;
@@ -16,5 +20,19 @@ page-genres {
     #time-select {
         flex: none!important;
         -webkit-flex: none!important;
+    }
+    .outer-bar {
+        background: rgb(56, 56, 56);
+        margin-top: 5px;
+        width: 95%;
+        height: 35px;
+    }
+    .inner-bar {
+        background: color($colors, primary);
+        height: inherit;
+    }
+
+    .label-md {
+        margin: 0 0 0 0;
     }
 }
