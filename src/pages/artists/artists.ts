@@ -20,7 +20,7 @@ export class ArtistsPage {
 
     }
 
-  ionViewWillEnter() {
+  ionViewDidEnter() {
     if (this.timeLoaded !== this.restProvider.timeLabel) {
       // Time range was changed on a different page; load accordingly
       this.getTopArtists();
@@ -35,9 +35,9 @@ export class ArtistsPage {
       content: 'Loading Artists...'
     });
     if (this.restProvider.tokenExpired()) {
-      this.restProvider.requestNewToken()
+      loading.present()
       .then(() => {
-        return loading.present();
+        return this.restProvider.requestNewToken();
       })
       .then(() => {
         return this.restProvider.getTopArtists();

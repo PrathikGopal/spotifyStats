@@ -33,9 +33,9 @@ export class TracksPage {
       content: 'Loading Tracks...'
     });
     if (this.restProvider.tokenExpired()) {
-      this.restProvider.requestNewToken()
+      loading.present()
       .then(() => {
-        return loading.present();
+        return this.restProvider.requestNewToken();
       })
       .then(() => {
         return this.restProvider.getTopTracks();
