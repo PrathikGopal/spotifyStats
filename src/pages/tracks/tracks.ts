@@ -11,18 +11,17 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class TracksPage {
   tracks: any;
   timeLoaded: string;
-  //time_span = "Past Month";
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider,
     public popoverCtrl: PopoverController, public loadingCtrl: LoadingController,
     public alertCtrl: AlertController, public iab: InAppBrowser, public actionCtrl: ActionSheetController) {
-      //this.showLoading();
-  }
+
+    }
 
   ionViewWillEnter() {
     if (this.timeLoaded !== this.restProvider.timeLabel) {
       // Time range was changed on a different page; load accordingly
-      this.showLoading();
+      this.getTopTracks();
     }
   }
 
@@ -30,22 +29,32 @@ export class TracksPage {
    * Get the top 50 Tracks within a specified time range. Renews token if necessary.
    */
   getTopTracks() {
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Tracks...'
+    });
     if (this.restProvider.tokenExpired()) {
-      // alert("Token has expired, requesting a new one");
       this.restProvider.requestNewToken()
+      .then(() => {
+        return loading.present();
+      })
       .then(() => {
         return this.restProvider.getTopTracks();
       })
       .then((data: any) => {
         this.tracks = data.items;
         this.timeLoaded = this.restProvider.timeLabel;
+        loading.dismiss();
       });
     }
     else {
-      this.restProvider.getTopTracks()
+      loading.present()
+      .then(() => {
+        return this.restProvider.getTopTracks();
+      })
       .then((data: any) => {
         this.tracks = data.items;
         this.timeLoaded = this.restProvider.timeLabel;
+        loading.dismiss();
       });
     }
   }
@@ -92,27 +101,24 @@ export class TracksPage {
           text: 'Past Month',
           role: 'month',
           handler: () => {
-            //this.time_span = "Past Month";
             this.restProvider.timeLabel = "Past Month";
-            this.showLoading();
+            this.getTopTracks();
           }
         },
         {
           text: 'Past 6 Months',
           role: '6month',
           handler: () => {
-            //this.time_span = "Past 6 Months";
             this.restProvider.timeLabel = "Past 6 Months";
-            this.showLoading();
+            this.getTopTracks();
           }
         },
         {
           text: 'All Time',
           role: 'alltime',
           handler: () => {
-            //this.time_span = "All Time";
             this.restProvider.timeLabel = "All Time";
-            this.showLoading();
+            this.getTopTracks();
           }
         }
       ]
@@ -128,22 +134,6 @@ export class TracksPage {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
       ev: myEvent
-    });
-  }
-
-  /**
-   * Display the loading popup and retrieve the top tracks
-   */
-  showLoading() {
-    let loading = this.loadingCtrl.create({
-      content: "Loading Data..."
-    });
-    loading.present()
-    .then(() => {
-      return this.getTopTracks();
-    })
-    .then(() => {
-      loading.dismiss();
     });
   }
 }

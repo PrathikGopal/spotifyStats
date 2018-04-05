@@ -12,19 +12,18 @@ import { PopoverPage } from '../popover/popover';
 export class ArtistsPage {
   artists: any;
   timeLoaded: string;
-  //time_span = "Past Month";
   modal: Modal;
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider,
     public popoverCtrl: PopoverController, public loadingCtrl: LoadingController,
     public modalCtrl: ModalController, public actionCtrl: ActionSheetController) {
-      //this.showLoading();
-  }
+
+    }
 
   ionViewWillEnter() {
     if (this.timeLoaded !== this.restProvider.timeLabel) {
       // Time range was changed on a different page; load accordingly
-      this.showLoading();
+      this.getTopArtists();
     }
   }
 
@@ -32,21 +31,32 @@ export class ArtistsPage {
    * Get the top 50 Artists within a specified time range. Renews token if necessary.
    */
   getTopArtists() {
+    let loading = this.loadingCtrl.create({
+      content: 'Loading Artists...'
+    });
     if (this.restProvider.tokenExpired()) {
       this.restProvider.requestNewToken()
+      .then(() => {
+        return loading.present();
+      })
       .then(() => {
         return this.restProvider.getTopArtists();
       })
       .then((data: any) => {
         this.artists = data.items;
         this.timeLoaded = this.restProvider.timeLabel;
+        loading.dismiss();
       });
     }
     else {
-      this.restProvider.getTopArtists()
+      loading.present()
+      .then(() => {
+        return this.restProvider.getTopArtists();
+      })
       .then((data: any) => {
         this.artists = data.items;
         this.timeLoaded = this.restProvider.timeLabel;
+        loading.dismiss();
       });
     }
   }
@@ -63,27 +73,24 @@ export class ArtistsPage {
           text: 'Past Month',
           role: 'month',
           handler: () => {
-            //this.time_span = "Past Month";
             this.restProvider.timeLabel = "Past Month";
-            this.showLoading();
+            this.getTopArtists();
           }
         },
         {
           text: 'Past 6 Months',
           role: '6month',
           handler: () => {
-            //this.time_span = "Past 6 Months";
             this.restProvider.timeLabel = "Past 6 Months";
-            this.showLoading();
+            this.getTopArtists();
           }
         },
         {
           text: 'All Time',
           role: 'alltime',
           handler: () => {
-            //this.time_span = "All Time";
             this.restProvider.timeLabel = "All Time";
-            this.showLoading();
+            this.getTopArtists();
           }
         }
       ]
@@ -110,21 +117,5 @@ export class ArtistsPage {
     this.modal = this.modalCtrl.create(ArtistDetailPage, {item: artist});
     // Send the artist to the modal
     this.modal.present();
-  }
-
-  /**
-   * Display the loading popup and retrieve the top artists
-   */
-  showLoading() {
-    let loading = this.loadingCtrl.create({
-      content: "Loading Data..."
-    });
-    loading.present()
-    .then(() => {
-      return this.getTopArtists();
-    })
-    .then(() => {
-      loading.dismiss();
-    });
   }
 }
