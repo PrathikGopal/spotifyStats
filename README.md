@@ -7,6 +7,10 @@ Note: There is currently no license on this application
 
 ## CHANGELOG
 
+### 1.3.2
+- Loading spinner dismisses at the correct time
+- More robust error reporting
+
 ### 1.3.1
 - Incorrect email formatting, oops
 

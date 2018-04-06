@@ -32,31 +32,34 @@ export class TracksPage {
     let loading = this.loadingCtrl.create({
       content: 'Loading Tracks...'
     });
-    if (this.restProvider.tokenExpired()) {
-      loading.present()
-      .then(() => {
-        return this.restProvider.requestNewToken();
-      })
-      .then(() => {
-        return this.restProvider.getTopTracks();
-      })
-      .then((data: any) => {
-        this.tracks = data.items;
-        this.timeLoaded = this.restProvider.timeLabel;
-        loading.dismiss();
-      });
-    }
-    else {
-      loading.present()
-      .then(() => {
-        return this.restProvider.getTopTracks();
-      })
-      .then((data: any) => {
-        this.tracks = data.items;
-        this.timeLoaded = this.restProvider.timeLabel;
-        loading.dismiss();
-      });
-    }
+    loading.present()
+    .then(() => {
+      if (this.restProvider.tokenExpired()) {
+        return this.restProvider.requestNewToken()
+        .then(() => {
+          return this.restProvider.getTopTracks();
+        })
+        .then((data: any) => {
+          this.tracks = data.items;
+          this.timeLoaded = this.restProvider.timeLabel;
+          loading.dismiss();
+        }, (error) => {
+          console.log('ERROR in tracks.getTopTracks: ' + error.message);
+          loading.dismiss();
+        });
+      }
+      else {
+        this.restProvider.getTopTracks()
+        .then((data: any) => {
+          this.tracks = data.items;
+          this.timeLoaded = this.restProvider.timeLabel;
+          loading.dismiss();
+        }, (error) => {
+          console.log('ERROR in tracks.getTopTracks: ' + error.message);
+          loading.dismiss();
+        });
+      }
+    });
   }
 
   /**

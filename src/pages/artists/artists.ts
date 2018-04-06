@@ -34,31 +34,34 @@ export class ArtistsPage {
     let loading = this.loadingCtrl.create({
       content: 'Loading Artists...'
     });
-    if (this.restProvider.tokenExpired()) {
-      loading.present()
-      .then(() => {
-        return this.restProvider.requestNewToken();
-      })
-      .then(() => {
-        return this.restProvider.getTopArtists();
-      })
-      .then((data: any) => {
-        this.artists = data.items;
-        this.timeLoaded = this.restProvider.timeLabel;
-        loading.dismiss();
-      });
-    }
-    else {
-      loading.present()
-      .then(() => {
-        return this.restProvider.getTopArtists();
-      })
-      .then((data: any) => {
-        this.artists = data.items;
-        this.timeLoaded = this.restProvider.timeLabel;
-        loading.dismiss();
-      });
-    }
+    loading.present()
+    .then(() => {
+      if (this.restProvider.tokenExpired()) {
+        this.restProvider.requestNewToken()
+        .then(() => {
+          return this.restProvider.getTopArtists();
+        })
+        .then((data: any) => {
+          this.artists = data.items;
+          this.timeLoaded = this.restProvider.timeLabel;
+          loading.dismiss();
+        }, (error) => {
+          console.log('ERROR in artists.getTopArtists: ' + error.message);
+          loading.dismiss();
+        });
+      }
+      else {
+        this.restProvider.getTopArtists()
+        .then((data: any) => {
+          this.artists = data.items;
+          this.timeLoaded = this.restProvider.timeLabel;
+          loading.dismiss();
+        }, (error) => {
+          console.log('ERROR in artists.getTopArtists: ' + error.message);
+          loading.dismiss();
+        });
+      }
+    });
   }
 
   /**

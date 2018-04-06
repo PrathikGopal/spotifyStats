@@ -75,21 +75,30 @@ export class GenresPage {
   /**
    * Get the top 50 tracks in a specified time range. Renews token if necessary.
    */
-  getTopTracks() {
-    return new Promise(resolve => {
+  getTopTracks(): Promise<any> {
+    return new Promise((resolve, reject) => {
       if (this.restProvider.tokenExpired()) {
         this.restProvider.requestNewToken()
         .then(() => {
           return this.restProvider.getTopTracks();
+        }, (error) => {
+          console.log('ERROR in genres.getTopTracks: ' + error.message);
+          reject(error);
         })
         .then((data: any) => {
           resolve(data.items);
+        }, (error) => {
+          console.log('ERROR in genres.getTopTracks: ' + error.message);
+          reject(error);
         });
       }
       else {
         this.restProvider.getTopTracks()
         .then((data: any) => {
           resolve(data.items);
+        }, (error) => {
+          console.log('ERROR in genres.getTopTracks: ' + error.message);
+          reject(error);
         });
       }
     });
@@ -101,20 +110,29 @@ export class GenresPage {
    */
   getArtist(id) {
     // "3j4ihH7xANVDGQhcDFJby7" Landon Tewers ID
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       if (this.restProvider.tokenExpired()) {
         this.restProvider.requestNewToken()
         .then(() => {
           return this.restProvider.getArtist(id);
+        }, (error) => {
+          console.log('ERROR in genres.getArtist: ' + error.message);
+          reject(error);
         })
         .then((data: any) => {
           resolve(data);
+        }, (error) => {
+          console.log('ERROR in genres.getArtist: ' + error.message);
+          reject(error);
         });
       }
       else {
         this.restProvider.getArtist(id)
         .then((data: any) => {
           resolve(data);
+        }, (error) => {
+          console.log('ERROR in genres.getArtist: ' + error.message);
+          reject(error);
         });
       }
     })
