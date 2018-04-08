@@ -154,6 +154,9 @@ export class GenresPage {
     })
     .then((results) => {
       tracks = results;
+    }, (error) => {
+      console.log('ERROR in genres.getGenres: ' + error.message);
+      loading.dismiss();
     })
     .then(() => {
       //  Need to make an array of promises
@@ -187,6 +190,9 @@ export class GenresPage {
         this.genreWidth[i] = (this.topGenres[i]["1"] * 2).toString() + '%';
       }
       this.timeLoaded = this.restProvider.timeLabel;
+      loading.dismiss();
+    }, (error) => {
+      console.log('ERROR in genres.getGenres: ' + error.message);
       loading.dismiss();
     });
   }
