@@ -7,6 +7,10 @@ Note: There is currently no license on this application
 
 ## CHANGELOG
 
+### 1.4.0
+- Introducing Playlist generation
+   - Top Tracks can now generated into a Spotify playlist
+
 ### 1.3.2
 - Loading spinner dismisses at the correct time
 - More robust error reporting

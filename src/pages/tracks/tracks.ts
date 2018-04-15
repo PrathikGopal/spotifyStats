@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AlertController, LoadingController, NavController, PopoverController, ActionSheetController} from 'ionic-angular';
+import { AlertController, LoadingController, NavController, PopoverController, ActionSheetController, DateTime} from 'ionic-angular';
 import { RestProvider } from '../../providers/rest/rest';
 import { PopoverPage } from '../popover/popover';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
@@ -93,6 +93,106 @@ export class TracksPage {
   }
 
   /**
+   * Ask the user to update their Spotify permissions. Will open OAuth window if "Ok" is selected
+   */
+  updatePlaylistPermissions() {
+    let alert = this.alertCtrl.create({
+      title: 'Permissions Update',
+      subTitle: 'uTrack will need permission to modify your playlists',
+      cssClass: 'track-alert',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            // Do nothing
+          }
+        },
+        {
+          text: 'Ok',
+          role: 'confirm',
+          handler: () => {
+            this.restProvider.spotifyOauth()
+            .then(success => {
+              return this.restProvider.getTokens(success);
+            })
+            .then(() => {
+              this.createPlaylist();
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /**
+   * Ask the user if they'd like to generate a playlist
+   */
+  createPlaylistAlert() {
+    let alert = this.alertCtrl.create({
+      title: 'Create Playlist?',
+      subTitle: 'Turn your Top Tracks into a Spotify playlist?',
+      cssClass: 'track-alert',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            // Do nothing
+          }
+        },
+        {
+          text: 'Create',
+          role: 'create',
+          handler: () => {
+            this.createPlaylist();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  /**
+   * Create a playlist of the top 50 tracks, includes handling for improper client scope
+   */
+  createPlaylist() {
+    var playlistURL = '';
+    this.restProvider.getUser()
+    .then((data: any) => {
+      let info = {
+        name: 'Top Tracks: ' + this.timeLoaded,
+        description: 'Created with uTrack'
+      }
+      return this.restProvider.createPlaylist(data.id, info);
+    }, (error) => {
+      console.log('ERROR in tracks.createPlaylist: ' + error.message);
+    })
+    .then((data: any) => {
+      // Process out the track URIs from the top tracks
+      playlistURL = data.external_urls.spotify;
+      let trackURIArray = [];
+      for (let track of this.tracks) {
+        trackURIArray.push(track.uri);
+      }
+      return this.restProvider.addToPlaylist(data.id, data.owner.id, trackURIArray);
+    }, (error) => {
+      console.log('ERROR in tracks.createPlaylist: ' + error.message);
+      if(error.status === 403) {
+        // Insufficient client scope; permissions need to be updated
+        this.updatePlaylistPermissions();
+      }
+    })
+    .then((data: any) => {
+      // Playlist created, now open it in Spotify
+      this.iab.create(playlistURL, "_system");
+    }, (error) => {
+      console.log('ERROR in tracks.createPlaylist: ' + error.message);
+    });
+  }
+
+  /**
    * Select the time range to be used
    */
   timeSelect() {
@@ -125,7 +225,7 @@ export class TracksPage {
           }
         }
       ]
-    })
+    });
     action.present();
   }
 
