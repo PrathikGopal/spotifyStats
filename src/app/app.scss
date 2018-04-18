@@ -47,14 +47,23 @@
     }
 }
 
-.track-alert {
+.alert-colors {
     .alert-wrapper {
         background-color: color($colors, dark);
     }
     .alert-sub-title {
         color: darken(color($colors, light), 40%);
     }
+    .alert-message {
+        color: darken(color($colors, light), 40%);
+    }
     color: color($colors, light);
+}
+
+.changelog {
+    ul {    
+        padding-left: 1.2em;
+    }
 }
 
 #time-select {

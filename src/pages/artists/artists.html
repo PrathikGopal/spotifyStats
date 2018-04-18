@@ -15,13 +15,17 @@
   <ion-list *ngIf="artists">
     <button color="dark" ion-item no-lines *ngFor="let artist of artists; let i = index" (click)="showArtistDetail(artist)">
       <ion-thumbnail item-start>
-        <!-- <img src={{artist.images[1].url}}> -->
         <img-loader src="{{artist.images[1].url}}" useImg></img-loader>
       </ion-thumbnail>
       <h2 class="artist">{{artist.name}}</h2>
       <h2 class="ranking">#{{i + 1}}</h2>
     </button>  
   </ion-list>
+
+  <!-- Used for debugging the changelog popup -->
+  <!-- <ion-fab right bottom padding-right>
+    <button ion-fab color="danger" (click)="clearVersion()"></button>
+  </ion-fab> -->
 </ion-content>
 
 <ion-footer padding-bottom text-center no-border>

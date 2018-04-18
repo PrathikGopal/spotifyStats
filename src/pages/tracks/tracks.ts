@@ -69,9 +69,8 @@ export class TracksPage {
   openTrack(track) {
     let alert = this.alertCtrl.create({
       title: 'Open in Spotify?',
-      subTitle: track.artists[0].name + " - <i>"+track.name+"</i>",
-      // subTitle: '<span>Sup</span> <img height="80" width="80" src='+track.album.images[1].url+'>',
-      cssClass: 'track-alert',
+      subTitle: '<b>' + track.artists[0].name + "</b><br><i>"+track.name+"</i>",
+      cssClass: 'alert-colors',
       buttons: [
         {
           text: 'Cancel',
@@ -99,7 +98,7 @@ export class TracksPage {
     let alert = this.alertCtrl.create({
       title: 'Permissions Update',
       subTitle: 'uTrack will need permission to modify your playlists',
-      cssClass: 'track-alert',
+      cssClass: 'alert-colors',
       buttons: [
         {
           text: 'Cancel',
@@ -133,7 +132,7 @@ export class TracksPage {
     let alert = this.alertCtrl.create({
       title: 'Create Playlist?',
       subTitle: 'Turn your Top Tracks into a Spotify playlist?',
-      cssClass: 'track-alert',
+      cssClass: 'alert-colors',
       buttons: [
         {
           text: 'Cancel',

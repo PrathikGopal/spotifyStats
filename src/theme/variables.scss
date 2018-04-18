@@ -34,7 +34,6 @@ $app-direction: ltr;
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  //primary:    #1db954,
   primary:    #1d9a49,
   danger:     #f53d3d,
   light:      #f4f4f4,
@@ -63,6 +62,8 @@ $radio-md-color-off: color($colors, light);
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+$alert-md-content-max-height: 400px;
+$alert-md-max-width: 330px;
 
 
 

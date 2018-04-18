@@ -10,6 +10,7 @@ Note: There is currently no license on this application
 ### 1.4.0
 - Introducing Playlist generation
    - Top Tracks can now generated into a Spotify playlist
+- Added changelog popup for first post-update launch
 
 ### 1.3.2
 - Loading spinner dismisses at the correct time
