@@ -13,13 +13,13 @@ export class LoginPage {
 
   }
 
-  debugLogin() {
-    this.restProvider.getTokens('')
-    .then(() => {
-      this.navCtrl.setRoot(TabsPage);
-      this.navCtrl.popToRoot();
-    });
-  }
+  // debugLogin() {
+  //   this.restProvider.getTokens('')
+  //   .then(() => {
+  //     this.navCtrl.setRoot(TabsPage);
+  //     this.navCtrl.popToRoot();
+  //   });
+  // }
 
   /**
    * Call the RestProvider's `spotifyOauth()` function and, upon success, set the root to the TabsPage
