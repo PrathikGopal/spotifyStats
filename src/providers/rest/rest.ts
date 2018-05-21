@@ -6,7 +6,7 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class RestProvider {
   webServiceURL = 'https://my-project-1497801619165.appspot.com';
-  //webServiceURL = 'http://192.168.1.5:8080'; // Debug
+  //webServiceURL = 'http://192.168.0.11:8080'; // Debug
   apiUrl = 'https://api.spotify.com/v1';
   accessToken: string;
   refreshToken: string;
@@ -45,6 +45,7 @@ export class RestProvider {
         this.timeLabel = 'Past Month';
         timespan = 'short_term';
     }
+
     return new Promise((resolve, reject) => {
       let headers = new HttpHeaders().set('Authorization', 'Bearer ' + this.accessToken).set('Accept', 'application/json');
       let params = new HttpParams().set('time_range', timespan).set('limit', '50');
@@ -73,6 +74,7 @@ export class RestProvider {
         headers: headers
       })
       .subscribe(data => {
+        alert(JSON.stringify(data));
         resolve(data);
       }, (error) => {
         alert('Could not retrieve Artist data');
