@@ -74,7 +74,6 @@ export class RestProvider {
         headers: headers
       })
       .subscribe(data => {
-        alert(JSON.stringify(data));
         resolve(data);
       }, (error) => {
         alert('Could not retrieve Artist data');
