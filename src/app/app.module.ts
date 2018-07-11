@@ -12,6 +12,7 @@ import { GenresPage } from '../pages/genres/genres';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { PopoverPage } from '../pages/popover/popover';
+import { FaqPage } from '../pages/faq/faq';
 
 // Plugins and providers
 import { StatusBar } from '@ionic-native/status-bar';
@@ -41,6 +42,7 @@ import { ArtistsModule } from '../pages/artists/artists.module';
     GenresPage,
     LoginPage,
     PopoverPage,
+    FaqPage
     ],
   imports: [
     BrowserModule,
@@ -64,6 +66,7 @@ import { ArtistsModule } from '../pages/artists/artists.module';
     GenresPage,
     LoginPage,
     PopoverPage,
+    FaqPage
   ],
   providers: [
     StatusBar,

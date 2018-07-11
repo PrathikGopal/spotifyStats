@@ -1,29 +1,29 @@
 <ion-header>
-    <ion-toolbar padding-top>
-      <ion-title>
-        Top Tracks
-      </ion-title>
-      <ion-buttons end padding-top padding-right>
-        <button ion-button icon-only (click)="presentPopover($event)">
-          <ion-icon name="more"></ion-icon>
-        </button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar padding-top>
+    <ion-title>
+      Top Tracks
+    </ion-title>
+    <ion-buttons end padding-top padding-right>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-  <ion-list *ngIf="tracks">
-      <button color="dark" ion-item no-lines *ngFor="let track of tracks; let i = index" (click)="openTrack(track)">
-        <ion-thumbnail item-start>
-          <img-loader src="{{track.album.images[1].url}}" useImg></img-loader>
-        </ion-thumbnail>
-        <p class="sublabel">{{track.artists[0].name}}</p>
-        <h2 class="track">{{track.name}}</h2>
-        <div class="ranking">#{{i + 1}}</div>
-        <br>
-        <p class="sublabel">{{track.album.name}}</p>
-      </button>  
-    </ion-list>
+  <ion-list *ngIf="tracks" text-wrap>
+    <button color="dark" ion-item no-lines *ngFor="let track of tracks; let i = index" (click)="openTrack(track)">
+      <ion-thumbnail item-start>
+        <img-loader src="{{track.album.images[1].url}}" useImg></img-loader>
+      </ion-thumbnail>
+      <p class="sublabel">{{track.artists[0].name}}</p>
+      <h2 class="track">{{track.name}}</h2>
+      <div class="ranking">#{{i + 1}}</div>
+      <br>
+      <p class="sublabel">{{track.album.name}}</p>
+    </button>  
+  </ion-list>
 
   <ion-fab right bottom padding-right>
     <button ion-fab color="primary" (click)="createPlaylistAlert()"><ion-icon name="add"></ion-icon></button>

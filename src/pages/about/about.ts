@@ -26,8 +26,4 @@ export class AboutPage {
   close() {
     this.viewCtrl.dismiss();
   }
-
-  venmo() {
-    
-  }
 }

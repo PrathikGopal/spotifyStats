@@ -3,6 +3,7 @@ import { App, NavController, NavParams, ViewController, ModalController } from '
 import { RestProvider } from '../../providers/rest/rest';
 import { LoginPage } from '../login/login';
 import { AboutPage } from '../about/about';
+import { FaqPage } from '../faq/faq';
 
 @Component({
   templateUrl: 'popover.html'
@@ -32,6 +33,18 @@ export class PopoverPage {
     .then(() => {
       this.app.getRootNav().setRoot(LoginPage);
       this.app.getRootNav().popToRoot();
+    });
+  }
+
+  /**
+   * Display the FAQ page
+   */
+  faq() { // Modal
+    this.viewCtrl.dismiss() // Dismiss the popover
+    .then(() => {
+      // Display the modal
+      let modal = this.modalCtrl.create(FaqPage);
+      modal.present();
     });
   }
 

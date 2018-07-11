@@ -7,9 +7,16 @@ Note: There is currently no license on this application
 
 ## CHANGELOG
 
+### 1.5.0
+- Added a FAQ page
+- Several changes under the hood
+
+### 1.4.1
+- Very minor cleanup
+
 ### 1.4.0
 - Introducing Playlist generation
-   - Top Tracks can now generated into a Spotify playlist
+   - Top Tracks can now be generated into a Spotify playlist
 - Added changelog popup for first post-update launch
 
 ### 1.3.2

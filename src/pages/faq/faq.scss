@@ -1,0 +1,6 @@
+page-faq {
+    .answer {
+        color: darken(color($colors, light), 40%);
+        white-space: normal;
+    }
+}

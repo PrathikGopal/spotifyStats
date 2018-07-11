@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>FAQ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list no-lines>
+    <ion-item>
+      Q: Where does this data come from?
+      <div class="answer">
+        A: All data is available through the Spotify Web API. uTrack doesn't do any independent
+        data collecting of its own.
+      </div>
+    </ion-item>
+    <ion-item>
+      Q: Can you show more date options?
+      <div class="answer">
+        A: Unfortunately not. Spotify only provides data for the 3 current date ranges.
+      </div>
+    </ion-item>
+    <ion-item>
+      Q: Can you show a play count for my top tracks?
+      <div class="answer">
+        A: Play count info isn't available, I'd love to include it if I could!
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

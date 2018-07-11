@@ -5,8 +5,9 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class RestProvider {
-  webServiceURL = 'https://my-project-1497801619165.appspot.com';
-  //webServiceURL = 'http://192.168.0.11:8080'; // Debug
+  //webServiceURL = 'https://my-project-1497801619165.appspot.com';
+  //webServiceURL = 'http://localhost:5000'; // Debug
+  webServiceURL = 'https://www.jbillstrom.app';
   apiUrl = 'https://api.spotify.com/v1';
   accessToken: string;
   refreshToken: string;

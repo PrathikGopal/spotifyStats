@@ -14,7 +14,7 @@ export class ArtistsPage {
   artists: any;
   timeLoaded: string;
   modal: Modal;
-  appVersion = '1.4.0'; // This needs to be updated per release
+  appVersion = '1.5.0'; // This needs to be updated per release
 
   constructor(public navCtrl: NavController, public restProvider: RestProvider, public popoverCtrl: PopoverController,
     public loadingCtrl: LoadingController, public modalCtrl: ModalController, public storage: Storage,
@@ -33,7 +33,8 @@ export class ArtistsPage {
     this.storage.get('storedVersion').then(result => {
       // Version number must be updated per release
       if (result !== this.appVersion) {
-        this.showChangelog();
+        //this.showChangelog();
+        this.storage.set('storedVersion', this.appVersion);
       }
     });
   }
